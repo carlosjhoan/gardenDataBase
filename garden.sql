@@ -469,4 +469,37 @@ values 	(13, '2011-10-30', '2012-01-05', '2012-01-04', 3, 'Entrega exitosa', 1),
 	(15, '2011-10-30', '2012-01-10', '2012-01-09', 3, 'Entrega exitosa', 3),
 	(16, '2011-10-21', '2012-01-20', '2010-01-15', 3, 'Entrega exitosa', 4);
 
+-- Inserciones en la tabla gama_producto
+insert into gama_producto
+values ('ORNAMENTALES', 'Las plantas de ornato, o plantas ornamentales, no son un tipo ni una familia concreta dentro del género de plantas. Se trata de cualquier planta que cultivemos y cuidemos con el propósito de embellecer o hacer más estético un lugar o espacio determinado.', 'Plantas para embellecer', './ornamental.jpg');
 
+-- Inserciones en la tabla producto
+insert into producto
+values	(1, 'Helecho A', 'ORNAMENTALES', '30cm de altura', 'Planta de exterior'),
+	(2, 'Helecho B', 'ORNAMENTALES', '25cm de altura', 'Planta de exterior'),
+	(3, 'Helecho C', 'ORNAMENTALES', '30cm de altura', 'Planta de exterior'),
+	(4, 'Begonia A', 'ORNAMENTALES', NULL, 'Planta de exterior'),
+	(5, 'Begonia B', 'ORNAMENTALES', '15 cm', 'Planta de exterior'),
+	(6, 'Begonia C', 'ORNAMENTALES', '18 cm', 'Planta de exterior');
+
+-- Inserciones en la tabla proveedor
+insert into proveedor(nombre, nit, fkIdCiudad, email)
+values	('SEVILLA PLANTAS S.A', 'SA10021012', 1, 'sevilla_plantasSA@gmail.com'),
+	('JARDIN EDÉN ZARAGOZA', 'SZ21321321', 2, 'edenjardin@gmail.com'),
+	('ORNAMENTALES CATALUÑA', 'SB54615912', 3, 'catalunyaornamentales@gmail.com'),
+	('ROSITAS DE KYOTO S.A', 'SM2351565', 4, 'rositasdekyoto@gmail.com'),
+	('MIS PLANTOTAS BUACARAMANGA', 'BUC21354654', 5, 'misplantotasbucara@gmail.com'),
+	('VERDE COBRIZO', 'CAL21354654', 6, 'verdecobrizo@gmail.com'),
+	('JARDÍN DE TEPEYEC', 'MED54654564', 7, 'jardintepeyec@gmail.com'),
+	('ORQUÍDEA JUÁREZ', 'TOL51654154', 8, 'orquideajuarez@gmail.com'),
+	('ROSITAS DON HIDALGO', 'PACH3524687', 9, 'rositadonhidalgo@gmail.com'),
+	('MACETONES FEDERAL', 'CDMX354654', 10, 'macetonesfederal@gmail.com');
+	
+-- inserciones en la tabla productoProveedor
+insert into productoProveedor
+values	(1, 1, 125, 15000.0, 9000.0),
+	(1, 6, 109, 13000.0, 8500.0),
+	(2, 5, 135, 11000.0, 7500.0),
+	(4, 8, 102, 9500, 7500.0),
+	(4, 4, 108, 12500.0, 10500.0),
+	(3, 2, 136, 6500.0, 3500.0);
