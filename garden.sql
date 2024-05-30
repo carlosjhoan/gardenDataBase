@@ -330,6 +330,24 @@ values	('Paseo Las Delicias S/N 41012', 1, 1, 'OFCSEVESP'),
 	( 'General, Gral. Pedro Ma Anaya 1, Centro', 9, 1, 'OFCPACMEX'),
 	( 'P.za de la Constitución 2, Centro Histórico', 10, 1, 'OFCCDMXMEX');
 
+-- inserciones en la tabla tipoTelefono
+insert into tipoTelefono(tipo)
+values	('Mòvil'),
+	('Fijo'),
+	('Fax');
+
+-- Inserciones en la tabla telefonoOficina
+insert into telefonoOficina(numero, fkIdTipoTelefono, fkCodigoOficina)
+values 	('+34955010010', 2, 'OFCSEVESP'),
+	('+34976721100', 2, 'OFCZARESP'),
+	('+34934027000', 2, 'OFCBARESP'),
+	('+34915298210', 2, 'OFCMADESP'),
+	('+576076337000', 2, 'OFCBUCCOL'),
+	('+576025247778', 2, 'OFCCALCOL'),
+	('+576044310482', 2, 'OFCMEDCOL'),
+	('+527222761900', 2, 'OFCTOLMEX'),
+	('+527717171500', 2, 'OFCPACMEX'),
+	('+525553458027', 2, 'OFCCDMXMEX');
 
 
 
