@@ -230,7 +230,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	*- Utilizando la función $\color{blue}{DATE_FORMAT}$  de MySQL.*
+	*- Utilizando la función  $${\color{blue}DATE_FORMAT}$$  de MySQL.*
 
 ### Consulta
 ~~~~mysql
