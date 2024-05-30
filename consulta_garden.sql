@@ -355,3 +355,30 @@ ORDER BY
 | FGH51651654   | 2008-03-14 |  2560000.00 |
 
 */
+
+/*
+	*14.* Devuelve un listado con todas las formas de pago que aparecen en la
+tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+repetidas.
+*/
+
+SELECT
+	f.formaDePago
+FROM
+	formaPago as f,
+	pago as p
+WHERE
+	p.fkIdFormaPago = f.idFormaPago
+
+GROUP BY
+	formaDePago;
+
+/*	
+| formaDePago           |
+|:---------------------:|
+| Efectivo              |
+| Tarjeta crédito       |
+| Cheque                |
+| Transferencia de pago |
+| Paypal                |
+*/
