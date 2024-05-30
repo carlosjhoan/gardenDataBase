@@ -400,6 +400,38 @@ values 	('Pl. de Cuba, 5', 1, 3, 1),
 	('Carrera 35 #52-45, Cabecera', 5, 2, 7),
 	('Av. Quebrada Seca #18 - 77, Comuna 4 Occidental', 5, 3, 7);
 	
+-- Inserciones en la tabla estadoPedido
+insert into estadoPedido(estado)
+values 	('Creado'),
+	('En tránsito'),
+	('Entregado'),
+	('Destinatario ausente'),
+	('Pendiente de recogida'),
+	('En devolución'),
+	('Retenido en aduanas');
+	
+-- Inserciones en la tabla formaPago
+insert into formaPago(formaDePago)
+values 	('Efectivo'),
+	('Tarjeta débito'),
+	('Tarjeta crédito'),
+	('Cheque'),
+	('Transferencia de pago');
 
+-- Inserciones en la tabla pago
+insert into pago
+values	('ABC25654321', 1, 5, '2008-06-12', 5250000.0),
+	('CDE21351646', 4, 4, '2008-01-25', 4000000.0),
+	('AFE32354554', 1, 3, '2010-07-15', 9000000.0),
+	('CDG25465335', 8, 5, '2007-01-25', 2500000.0),
+	('CDH32468745', 1, 1, '2008-04-17', 3750000.0),
+	('CHJ68634668', 2, 4, '2008-05-17', 1070000.0),
+	('DGC20235456', 3, 3, '2011-04-17', 5750000.0),
+	('DGE26598324', 5, 5, '2008-10-20', 4000000.0),
+	('AVZ00222000', 6, 1, '2008-08-18', 12000000.0),
+	('DGA06506501', 7, 5, '2020-04-17', 7500000.0);
+
+insert into pago
+values	('FFG13213213', 1, 5, '2008-11-30', 4500000.0);
 
 
