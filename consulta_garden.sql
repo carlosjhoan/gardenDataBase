@@ -285,3 +285,23 @@ WHERE
 |:------------:|:---------------:|:-------------:|:------------:|
 |            6 |               6 | 2008-09-21    | 2008-09-19   |
 */
+
+/*
+	*11.* Devuelve un listado de todos los pedidos que fueron rechazados en 2009.
+*/
+
+SELECT
+	codigoPedido
+FROM
+	pedido
+WHERE
+	YEAR(fechaPedido) = '2009' AND
+	fkIdEstado = 8;
+	
+/*
+| codigoPedido |
+|:------------:|
+|            9 |
+|           10 |
+|           11 |
+|           12 |
