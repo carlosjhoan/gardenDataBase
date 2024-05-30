@@ -65,3 +65,27 @@ WHERE
 | Barcelona | +34934027000 |
 | Madrid    | +34915298210 |
 
+*3.* Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
+jefe tiene un código de jefe igual a 71.
+
+### Consulta
+~~~~mysql
+SELECT 	
+	nombre,
+	concat(apellido1, ' ',  apellido2) as apellidos,
+	email
+FROM
+	empleado
+WHERE 
+	fkCodigoJefe = 71;
+~~~~
+
+### Resultado
+
+| nombre  | apellidos        | email                           |
+|:-------:|:----------------:|:-------------------------------:|
+| Ángela  | Gutierrez Arango | gutierrezarangoangela@gmail.com |
+| Daniel  | Tobón Comba      | pepsimanCombaDani@gmail.com     |
+| María   | Correa Martínez  | martinezjulianamaria@gmail.com  |
+| Mario   | Galvis Olago     | galvismarioolago@gmail.com      |
+
