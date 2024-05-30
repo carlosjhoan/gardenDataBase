@@ -230,7 +230,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	_*- Utilizando la función <span style="color:red">DATE_FORMAT</span> de MySQL.*_
+	*- Utilizando la función $\color{blue}{DATE_FORMAT}$  de MySQL.*
 
 ### Consulta
 ~~~~mysql
@@ -254,7 +254,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	_*- Sin utilizar ninguna de las funciones anteriores.*_
+	*- Sin utilizar ninguna de las funciones anteriores.*
 
  ### Consulta
 ~~~~mysql
