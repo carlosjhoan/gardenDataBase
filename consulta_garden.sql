@@ -75,3 +75,19 @@ WHERE
 	e.fkCargoEmpleado = idCargoEmpleado ;
 	
 /*
+
+/*
+	*5.* Devuelve un listado con el nombre, apellidos y puesto de aquellos
+empleados que no sean representantes de ventas.
+*/
+
+SELECT 	
+	e.nombre,
+	concat(e.apellido1, ' ',  e.apellido2) as apellidos,
+	ce.cargo
+FROM
+	empleado as e,
+	cargoEmpleado as ce
+WHERE
+	e.fkCargoEmpleado <> 8 AND
+	e.fkCargoEmpleado = ce.idCargoEmpleado;
