@@ -349,6 +349,32 @@ values 	('+34955010010', 2, 'OFCSEVESP'),
 	('+527717171500', 2, 'OFCPACMEX'),
 	('+525553458027', 2, 'OFCCDMXMEX');
 
+-- Inserciones en la tabla cargoEmpleado
+insert into cargoEmpleado(idCargoEmpleado, cargo)
+values	(1, 'CEO'),
+	(2, 'Gerente de Contabiliad'),
+	(3, 'Asesor Contable'),
+	(4, 'Auxiliar Contable'),
+	(5, 'Gerente de Tesorería'),
+	(6, 'Tesorero'),
+	(7, 'Jefe de Ventas'),
+	(8, 'Asesor de ventas'),
+	(9, 'Gerente de Logìstíca'),
+	(10, 'Auxiliar de Logística');
+
+-- Inserciones en la tabla empleado
+insert into empleado
+values	(10, 'Carlos Jhoan', 'Aguilar', 'Galvis', '00', 'carlosjhoanaguilar@gmail.com',  'OFCBUCCOL', NULL, 1),
+	(21, 'Luis Alfonso', 'Gómez', 'Mancilla', '01', 'luisgomezmancilla@gmail.com',  'OFCBUCCOL', 10, 2),
+	(32, 'Javier Augusto', 'Galvis', 'Chacón', '02', 'javieraugustochacon@gmail.com',  'OFCTOLMEX', 21, 3),
+	(43, 'Julio César', 'Galvis', 'Chacón', '03', 'juliogalvischacon@gmail.com',  'OFCPACMEX', 32, 4),
+	(51, 'Sandra Patricia', 'González', 'Amador', '04', 'sandraGonzalezAmador@gmail.com',  'OFCCALCOL', 10, 5),
+	(65, 'Clara Milena', 'Aguilar', 'Bella', '05', 'bellaAguilarClara@gmail.com',  'OFCBARESP', 51, 6),
+	(71, 'Juan David', 'Gómez', 'Benavides', '06', 'eliezerJuanGomez@gmail.com',  'OFCCDMXMEX', 10, 7),
+	(87, 'Ángela', 'Gutierrez', 'Arango', '07', 'gutierrezarangoangela@gmail.com',  'OFCMADESP', 71, 8),
+	(97, 'Daniel', 'Tobón', 'Comba', '08', 'pepsimanCombaDani@gmail.com',  'OFCMEDCOL', 71, 8),
+	(107, 'María', 'Correa', 'Martínez', '09', 'martinezjulianamaria@gmail.com',  'OFCMEDCOL', 71, 8),
+	(117, 'Mario', 'Galvis', 'Olago', '10', 'galvismarioolago@gmail.com',  'OFCZARESP', 71, 8);
 
 
 
