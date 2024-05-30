@@ -32,6 +32,7 @@ WHERE
 | OFCTOLMEX     | Toluca de Lerdo   |
 | OFCZARESP     | Zaragoza          |
 
+
 *2.* Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
 
 ### Consulta
@@ -65,6 +66,7 @@ WHERE
 | Barcelona | +34934027000 |
 | Madrid    | +34915298210 |
 
+
 *3.* Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
 jefe tiene un código de jefe igual a 71.
 
@@ -89,6 +91,7 @@ WHERE
 | María   | Correa Martínez  | martinezjulianamaria@gmail.com  |
 | Mario   | Galvis Olago     | galvismarioolago@gmail.com      |
 
+
 *4.* Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
 empresa.
 
@@ -112,5 +115,37 @@ WHERE
 | cargo | nombre       | apellidos      | email                        |
 |:-----:|:------------:|:--------------:|:----------------------------:|
 | CEO   | Carlos Jhoan | Aguilar Galvis | carlosjhoanaguilar@gmail.com |
+
+
+*5.* Devuelve un listado con el nombre, apellidos y puesto de aquellos
+empleados que no sean representantes de ventas.
+*/
+
+### Consulta
+~~~~mysql
+
+SELECT 	
+	e.nombre,
+	concat(e.apellido1, ' ',  e.apellido2) as apellidos,
+	ce.cargo
+FROM
+	empleado as e,
+	cargoEmpleado as ce
+WHERE
+	e.fkCargoEmpleado <> 8 AND
+	e.fkCargoEmpleado = ce.idCargoEmpleado;
+~~~~
+
+### Resultado
+
+| nombre          | apellidos        | cargo                  |
+|:---------------:|:----------------:|:----------------------:|
+| Carlos Jhoan    | Aguilar Galvis   | CEO                    |
+| Luis Alfonso    | Gómez Mancilla   | Gerente de Contabiliad |
+| Javier Augusto  | Galvis Chacón    | Asesor Contable        |
+| Julio César     | Galvis Chacón    | Auxiliar Contable      |
+| Sandra Patricia | González Amador  | Gerente de Tesorería   |
+| Clara Milena    | Aguilar Bella    | Tesorero               |
+| Juan David      | Gómez Benavides  | Jefe de Ventas         |
 
 
