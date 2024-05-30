@@ -41,3 +41,17 @@ WHERE
 	c.fkIdRegion = r.idRegion AND
 	r.fkIdPais = p.idPais AND 
 	p.idPais = 1;
+
+/*
+	*3.* Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
+jefe tiene un código de jefe igual a 7.
+*/
+
+SELECT 	
+	nombre,
+	concat(apellido1, ' ',  apellido2) as apellidos,
+	email
+FROM
+	empleado
+WHERE 
+	fkCodigoJefe = 71;
