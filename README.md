@@ -172,7 +172,7 @@ WHERE
 ### Resultado
 
 | Empresa                                |
-|:----------------------------------------:|
+|:----------------------------------------|
 | EXPLOTACIONES AGRICOLAS VALJIMENO S.L. |
 | AGRO-Spain Ingenieros                  |
 | Agropecuària de Moià                   |
