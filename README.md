@@ -277,3 +277,78 @@ GROUP BY
 |             4 |
 |             5 |
 |             6 |
+
+
+*9.* Devuelve un listado con el código de pedido, código de cliente, fecha
+esperada y fecha de entrega de los pedidos que no han sido entregados a
+tiempo.
+
+ ### Consulta
+~~~~mysql
+SELECT
+	codigoPedido,
+	fkCodigoCliente,
+	fechaEsperada,
+	fechaEntrega
+FROM
+	pedido
+WHERE
+	DATEDIFF(fechaEsperada, fechaEntrega) < 0;
+~~~~
+
+### Resultado
+
+| codigoPedido | fkCodigoCliente | fechaEsperada | fechaEntrega |
+|:------------:|:---------------:|:-------------:|:------------:|
+|            1 |               1 | 2008-07-20    | 2008-07-23   |
+|            2 |               2 | 2008-04-20    | 2008-05-02   |
+|            5 |               5 | 2008-10-21    | 2008-10-23   |
+|            8 |               8 | 2007-04-03    | 2007-04-23   |
+
+
+*10.* Devuelve un listado con el código de pedido, código de cliente, fecha
+esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
+menos dos días antes de la fecha esperada.  
+
+	- Utilizando la función ADDDATE de MySQL.  
+
+ ### Consulta
+~~~~mysql
+SELECT
+	codigoPedido,
+	fkCodigoCliente,
+	fechaEsperada,
+	fechaEntrega
+FROM
+	pedido
+WHERE
+	ADDDATE(fechaEntrega, INTERVAL 2 DAY) <= fechaEsperada;
+~~~~
+
+### Resultado
+
+| codigoPedido | fkCodigoCliente | fechaEsperada | fechaEntrega |
+|:------------:|:---------------:|:-------------:|:------------:|
+|            6 |               6 | 2008-09-21    | 2008-09-19   |
+
+
+	- Utilizando la función DATEDIFF de MySQL.
+
+ ### Consulta
+~~~~mysql
+SELECT
+	codigoPedido,
+	fkCodigoCliente,
+	fechaEsperada,
+	fechaEntrega
+FROM
+	pedido
+WHERE
+	DATEDIFF(fechaEsperada, fechaEntrega) >= 2;
+~~~~
+
+### Resultado
+
+| codigoPedido | fkCodigoCliente | fechaEsperada | fechaEntrega |
+|:------------:|:---------------:|:-------------:|:------------:|
+|            6 |               6 | 2008-09-21    | 2008-09-19   |
