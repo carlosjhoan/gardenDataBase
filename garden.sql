@@ -111,7 +111,7 @@ CREATE TABLE oficina(
 -- Creación de la tabla direccionOficina
 CREATE TABLE direccionOficina(
 	idDireccion INT AUTO_INCREMENT,
-	direccion VARCHAR(20),
+	direccion VARCHAR(100),
 	fkIdCiudad INT,
 	fkIdTipoDireccion INT,
 	fkCodigoOficina VARCHAR(10),
@@ -188,7 +188,7 @@ CREATE TABLE telefonoCliente(
 -- Creación de la tabla direccionCliente
 CREATE TABLE direccionCliente(
 	idDireccionCliente INT AUTO_INCREMENT,
-	direccion VARCHAR(20),
+	direccion VARCHAR(100),
 	fkIdCiudad INT,
 	fkIdTipoDireccion INT,
 	fkCodigoCliente INT(11),
