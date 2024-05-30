@@ -311,7 +311,24 @@ values 	('OFCSEVESP', 'Oficina Sevilla'),
 	('OFCPACMEX','Oficina Pachuca'),
 	('OFCCDMXMEX','Oficina Ciudad de México');
 
+-- inserciones en la tabla  tipoDireccion
+insert into tipoDireccion(tipo)
+values 	('Despacho'),
+	('Facturación'),
+	('Entrega');
 
+-- inserciones en la tabla direccionOficina 
+insert into direccionOficina(direccion, fkIdCiudad, fkIdTipoDireccion, fkCodigoOficina)
+values	('Paseo Las Delicias S/N 41012', 1, 1, 'OFCSEVESP'),
+	('Pl. de Ntra. Sra. del Pilar, 18, Casco Antiguo', 2, 1, 'OFCZARESP'),
+	('Pl. de Sant Jaume, 1, Ciutat Vella' , 3 , 1 , 'OFCBARESP'),
+	('C. de Montalbán, 1, Retiro' , 4 , 1 , 'OFCMADESP'),
+	( 'Cra. 11 #34-52, García Rovira', 5, 1, 'OFCBUCCOL'),
+	('Centro Administrativo Municipal, Av. 2 Nte. #10 - 70, San Pedro' , 6, 1, 'OFCCALCOL'),
+	('Cl 44 #52 - 165, La Candelaria', 7, 1, 'OFCMEDCOL'),
+	('Av. Independencia 207, Centro', 8, 1, 'OFCTOLMEX'),
+	( 'General, Gral. Pedro Ma Anaya 1, Centro', 9, 1, 'OFCPACMEX'),
+	( 'P.za de la Constitución 2, Centro Histórico', 10, 1, 'OFCCDMXMEX');
 
 
 
