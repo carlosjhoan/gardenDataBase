@@ -400,3 +400,30 @@ where
 |           13 | 2012-01-04   |
 |           15 | 2012-01-09   |
 |           16 | 2010-01-15   |
+
+*13.* Devuelve un listado con todos los pagos que se realizaron en el
+año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
+
+### Consulta
+~~~~mysql
+SELECT	
+	idTransaccion,
+	fechaPago,
+	total
+FROM
+	pago
+WHERE
+	YEAR(fechaPago) = '2008' AND
+	fkIdFormaPago = 6
+ORDER BY
+	total DESC;
+~~~~
+
+### Resultado
+
+| idTransaccion | fechaPago  | total       |
+|:-------------:|:----------:|:-----------:|
+| ALK54545654   | 2008-01-10 | 10582000.00 |
+| AHV51515654   | 2008-09-17 |  5150000.00 |
+| AHJ51215055   | 2008-07-02 |  3540000.00 |
+| FGH51651654   | 2008-03-14 |  2560000.00 |
