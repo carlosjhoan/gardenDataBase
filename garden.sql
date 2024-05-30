@@ -376,8 +376,30 @@ values	(10, 'Carlos Jhoan', 'Aguilar', 'Galvis', '00', 'carlosjhoanaguilar@gmail
 	(107, 'María', 'Correa', 'Martínez', '09', 'martinezjulianamaria@gmail.com',  'OFCMEDCOL', 71, 8),
 	(117, 'Mario', 'Galvis', 'Olago', '10', 'galvismarioolago@gmail.com',  'OFCZARESP', 71, 8);
 
-
-
+-- Inserciones en la tabla cliente
+insert into cliente
+values	(001, 'EXPLOTACIONES AGRICOLAS VALJIMENO S.L.', 87, 150000000.0),
+	(002, 'AGRO-Spain Ingenieros', 117, 110000000.0),
+	(003, 'Agropecuària de Moià', NULL, 50000000.0),
+	(004, 'Compo Iberia SL', 97, 75000000),
+	(005, 'Central Agroindustrial Mexiquense S.A. de C.V.', 87, 25000000.0),
+	(006, 'Punto Verde Agro Toluca', 107, 15000000.0),
+	(007, 'AGROPECUARIA RIO FRIO LTDA', 97, 10000000.0),
+	(008, 'Casagro', NULL, 5000000);
+	
+-- Inserciones en la tabla direccionCliente
+insert into direccionCliente(direccion, fkIdCiudad, fkIdTipoDireccion, fkCodigoCliente)
+values 	('Pl. de Cuba, 5', 1, 3, 1),
+	('Av. San Francisco Javier, 9', 1, 3, 2),
+	('Ronda de la Univ., 14, 1º 2ª, Eixample', 3, 3, 3),
+	('Av. Diagonal, 188, 3º B, Sant Martí', 3, 3, 4),
+	('Sor Juana I. de La C. 305, Barrio de Sta Clara', 8, 3, 5), 
+	('Sor Juana I. de La C. 310, Barrio de Sta Clara', 8, 2, 5),
+	('José María Luis Mora 990, Ocho Cedros', 8, 3, 6),
+	('Aurora. Santander #21 - 57', 5, 3, 7),
+	('Carrera 35 #52-45, Cabecera', 5, 2, 7),
+	('Av. Quebrada Seca #18 - 77, Comuna 4 Occidental', 5, 3, 7);
+	
 
 
 
