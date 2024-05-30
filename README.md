@@ -230,7 +230,9 @@ GROUP BY
 |             5 |
 |             6 |
 
-	- Utilizando la función $${\color{lightblue}DATE_FORMAT}$$ de MySQL.
+$${\color{red}Welcome \space \color{lightblue}To \space \color{orange}Stackoverflow}$$
+
+	- Utilizando la función DATE_FORMAT de MySQL.
 
 ### Consulta
 ~~~~mysql
