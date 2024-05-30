@@ -206,7 +206,7 @@ FROM
 realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
 aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
 
-	_*- Utilizando la función <span style="color:red">YEAR</span>~ de MySQL.*_
+	- Utilizando la función YEAR de MySQL.
 
  ### Consulta
 ~~~~mysql
@@ -230,7 +230,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	*- Utilizando la función  $${\color{blue}DATE_FORMAT}$$  de MySQL.*
+	- Utilizando la función  DATE_FORMAT de MySQL.
 
 ### Consulta
 ~~~~mysql
@@ -254,7 +254,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	*- Sin utilizar ninguna de las funciones anteriores.*
+	- Sin utilizar ninguna de las funciones anteriores.
 
  ### Consulta
 ~~~~mysql
