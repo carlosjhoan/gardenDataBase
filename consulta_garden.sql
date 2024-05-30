@@ -55,3 +55,23 @@ FROM
 	empleado
 WHERE 
 	fkCodigoJefe = 71;
+
+/*
+	*4.* Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
+empresa.
+
+*/
+
+SELECT 	
+	ce.cargo,
+	e.nombre,
+	concat(e.apellido1, ' ',  e.apellido2) as apellidos,
+	e.email
+FROM
+	empleado as e,
+	cargoEmpleado as ce
+WHERE
+	fkCodigoJefe is NULL AND
+	e.fkCargoEmpleado = idCargoEmpleado ;
+	
+/*
