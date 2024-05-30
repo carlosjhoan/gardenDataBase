@@ -409,6 +409,9 @@ values 	('Creado'),
 	('Pendiente de recogida'),
 	('En devolución'),
 	('Retenido en aduanas');
+
+insert into estadoPedido(estado)
+values 	('Rechazado');
 	
 -- Inserciones en la tabla formaPago
 insert into formaPago(formaDePago)
@@ -445,5 +448,10 @@ values 	(1, '2008-05-30', '2008-07-20', '2008-07-23', 3, 'Pedido entregado con �
 	(7, '2020-03-09', '2020-06-18', NULL, 1, 'Pedido recién realizado', 7),
 	(8, '2006-10-31', '2007-04-03', '2007-04-23', 3, 'Tuvimos inconvenientes en el transporte, pero se entregó exitosamente.',8);
 
+insert into pedido
+values 	(9, '2009-09-30', '2009-10-20', NULL, 8, 'No coincide con lo que el cliente pidió', 1),
+	(10, '2009-07-15', '2009-08-18', NULL, 8, 'No coincide con lo que el cliente pidió', 2),
+	(11, '2009-06-10', '2009-08-21', NULL, 8, 'No coincide con lo que el cliente pidió', 3),
+	(12, '2009-09-30', '2009-11-25', NULL, 8, 'No coincide con lo que el cliente pidió', 4);
 
 
