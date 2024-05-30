@@ -434,4 +434,16 @@ values	('ABC25654321', 1, 5, '2008-06-12', 5250000.0),
 insert into pago
 values	('FFG13213213', 1, 5, '2008-11-30', 4500000.0);
 
+-- Inserciones en la tabla pedido
+insert into pedido
+values 	(1, '2008-05-30', '2008-07-20', '2008-07-23', 3, 'Pedido entregado con éxito auqnue tarde', 1),
+	(2, '2007-11-30', '2008-04-20', '2008-05-02', 3, 'Pedido entregado con garantía', 2),
+	(3, '2011-03-15', '2011-05-02', NULL, 2, 'Pedido en camino', 3),
+	(4, '2007-12-20', '2008-02-20', '2008-02-20', 3, 'Cliente recibión satisfactoriamente', 4),
+	(5, '2008-08-13', '2008-10-21', '2008-10-23', 3, 'Entregado. Inconvenientes al descargar', 5),
+	(6, '2008-08-10', '2008-09-21', '2008-09-19', 3, 'Entregado. Cliente satisfecho', 6),
+	(7, '2020-03-09', '2020-06-18', NULL, 1, 'Pedido recién realizado', 7),
+	(8, '2006-10-31', '2007-04-03', '2007-04-23', 3, 'Tuvimos inconvenientes en el transporte, pero se entregó exitosamente.',8);
+
+
 
