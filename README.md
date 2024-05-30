@@ -20,7 +20,7 @@ WHERE
 
 ### Resultado
 | codigoOficina | nombre            |
-+ :----------:  + :---------------: +
+| :----------:  | :---------------: |
 | OFCBARESP     | Barcelona         |
 | OFCBUCCOL     | Bucaramanga       |
 | OFCCALCOL     | Cali              |
@@ -30,4 +30,4 @@ WHERE
 | OFCPACMEX     | Pachuca de Soto   |
 | OFCSEVESP     | Sevilla           |
 | OFCTOLMEX     | Toluca de Lerdo   |
-| OFCZARESP     | Zaragoza          | 
+| OFCZARESP     | Zaragoza          |
