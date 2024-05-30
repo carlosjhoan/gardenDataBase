@@ -360,7 +360,8 @@ WHERE
  ### Consulta
 ~~~~mysql
 SELECT
-	codigoPedido
+	codigoPedido,
+	fechaEsperada
 FROM
 	pedido
 WHERE
@@ -370,12 +371,12 @@ WHERE
 
 ### Resultado
 
-| codigoPedido |
-|:------------:|
-|            9 |
-|           10 |
-|           11 |
-|           12 |
+| codigoPedido | fechaEsperada |
+|:------------:|:-------------:|
+|            9 | 2009-10-20    |
+|           10 | 2009-08-18    |
+|           11 | 2009-08-21    |
+|           12 | 2009-11-25    |
 
 *12.* Devuelve un listado de todos los pedidos que han sido entregados en el
 mes de enero de cualquier año.
