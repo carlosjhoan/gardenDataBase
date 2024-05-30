@@ -15,7 +15,7 @@ FROM
 	ciudad as c
 WHERE 	
 	o.codigoOficina = do.fkCodigoOficina AND
-	c.idCiudad = fkIdCiudad;
+	c.idCiudad = do.fkIdCiudad;
 ~~~~
 
 ### Resultado
