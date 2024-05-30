@@ -230,9 +230,8 @@ GROUP BY
 |             5 |
 |             6 |
 
-$${\color{black}Utilizando \space \color{black}la \space \color{black}función \space \color{lightblue}DATE_FORMAT \space \color{black}de \space \color{black}MySQL}$$
+$${\color{black}Utilizando \space \color{black}la \space \color{black}función \space \color{blue}DATEFORMAT \space \color{black}de \space \color{black}MySQL}$$
 
-	- Utilizando la función DATE_FORMAT de MySQL.
 
 ### Consulta
 ~~~~mysql
