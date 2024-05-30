@@ -119,7 +119,7 @@ WHERE
 
 *5.* Devuelve un listado con el nombre, apellidos y puesto de aquellos
 empleados que no sean representantes de ventas.
-*/
+
 
 ### Consulta
 ~~~~mysql
@@ -201,11 +201,12 @@ FROM
 | En devolución         |
 | Retenido en aduanas   |
 
+
 *8.* Devuelve un listado con el código de cliente de aquellos clientes que
 realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
 aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
 
-	**- Utilizando la función ~~~~mysqlYEAR~~~~ de MySQL.**
+	_*- Utilizando la función <span style="color:red">YEAR</span>~ de MySQL.*_
 
  ### Consulta
 ~~~~mysql
@@ -229,7 +230,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	**- Utilizando la función ~~~~mysqlDATE_FORMAT~~~~ de MySQL.**
+	_*- Utilizando la función <span style="color:red">DATE_FORMAT</span> de MySQL.*_
 
 ### Consulta
 ~~~~mysql
@@ -253,7 +254,7 @@ GROUP BY
 |             5 |
 |             6 |
 
-	**- Sin utilizar ninguna de las funciones anteriores.**
+	_*- Sin utilizar ninguna de las funciones anteriores.*_
 
  ### Consulta
 ~~~~mysql
