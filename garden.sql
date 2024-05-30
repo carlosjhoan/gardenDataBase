@@ -454,4 +454,10 @@ values 	(9, '2009-09-30', '2009-10-20', NULL, 8, 'No coincide con lo que el clie
 	(11, '2009-06-10', '2009-08-21', NULL, 8, 'No coincide con lo que el cliente pidió', 3),
 	(12, '2009-09-30', '2009-11-25', NULL, 8, 'No coincide con lo que el cliente pidió', 4);
 
+insert into pedido
+values 	(13, '2011-10-30', '2012-01-05', '2012-01-04', 3, 'Entrega exitosa', 1),
+	(14, '2010-03-15', '2010-08-07', '2010-08-04', 3, 'Entrega exitosa', 2),
+	(15, '2011-10-30', '2012-01-10', '2012-01-09', 3, 'Entrega exitosa', 3),
+	(16, '2011-10-21', '2012-01-20', '2010-01-15', 3, 'Entrega exitosa', 4);
+
 
