@@ -421,6 +421,9 @@ values 	('Efectivo'),
 	('Cheque'),
 	('Transferencia de pago');
 
+insert into formaPago(formaDePago)
+values 	('Paypal');
+
 -- Inserciones en la tabla pago
 insert into pago
 values	('ABC25654321', 1, 5, '2008-06-12', 5250000.0),
@@ -436,6 +439,12 @@ values	('ABC25654321', 1, 5, '2008-06-12', 5250000.0),
 
 insert into pago
 values	('FFG13213213', 1, 5, '2008-11-30', 4500000.0);
+
+insert into pago
+values	('AHJ51215055', 1, 6, '2008-07-02', 3540000.0),
+	('FGH51651654', 2, 6, '2008-03-14', 2560000.0),
+	('AHV51515654', 6, 6, '2008-09-17', 5150000.0),
+	('ALK54545654', 3, 6, '2008-01-10', 10582000.0);
 
 -- Inserciones en la tabla pedido
 insert into pedido
