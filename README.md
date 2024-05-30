@@ -376,3 +376,26 @@ WHERE
 |           10 |
 |           11 |
 |           12 |
+
+*12.* Devuelve un listado de todos los pedidos que han sido entregados en el
+mes de enero de cualquier año.
+
+ ### Consulta
+~~~~mysql
+SELECT
+	codigoPedido,
+	fechaEntrega
+FROM
+	pedido
+where 
+	fkIdEstado = 3 AND
+	MONTH(fechaEntrega) = '01';
+~~~~
+
+### Resultado
+
+| codigoPedido | fechaEntrega |
+|:------------:|:------------:|
+|           13 | 2012-01-04   |
+|           15 | 2012-01-09   |
+|           16 | 2010-01-15   |
