@@ -178,5 +178,101 @@ WHERE
 | Agropecuària de Moià                   |
 | Compo Iberia SL                        |
 
+*7.* Devuelve un listado con los distintos estados por los que puede pasar un
+pedido.
 
+### Consulta
+~~~~mysql
+SELECT
+	estado
+FROM
+	estadoPedido;
+~~~~
 
+### Resultado
+
+| estado                |
+|:--------------------:|
+| Creado                |
+| En tránsito           |
+| Entregado             |
+| Destinatario ausente  |
+| Pendiente de recogida |
+| En devolución         |
+| Retenido en aduanas   |
+
+*8.* Devuelve un listado con el código de cliente de aquellos clientes que
+realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
+aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+
+	**- Utilizando la función ~~~~mysqlYEAR~~~~ de MySQL.**
+
+ ### Consulta
+~~~~mysql
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	YEAR(fechaPago) = '2008'
+GROUP BY
+	codigoCliente;
+~~~~
+
+### Resultado
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
+
+	**- Utilizando la función ~~~~mysqlDATE_FORMAT~~~~ de MySQL.**
+
+### Consulta
+~~~~mysql
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	DATE_FORMAT(fechaPago, "%Y") = '2008'
+GROUP BY
+	codigoCliente;
+~~~~
+
+### Resultado
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
+
+	**- Sin utilizar ninguna de las funciones anteriores.**
+
+ ### Consulta
+~~~~mysql
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	SUBSTRING(fechaPago, 1, LOCATE('-', fechaPago) - 1) = '2008'
+GROUP BY
+	codigoCliente;
+~~~~
+
+### Resultado
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
