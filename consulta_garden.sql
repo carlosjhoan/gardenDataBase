@@ -108,5 +108,107 @@ WHERE
 	c.idCiudad = dc.fkIdCiudad AND
 	cl.codigoCliente = dc.fkCodigoCliente AND
 	c.fkIdRegion = r.idRegion AND
+
+/*
+	*7.* Devuelve un listado con los distintos estados por los que puede pasar un
+pedido.
+*/
+
+
+SELECT
+	estado
+FROM
+	estadoPedido;
+
+/*
+| estado                |
+|:--------------------:|
+| Creado                |
+| En tránsito           |
+| Entregado             |
+| Destinatario ausente  |
+| Pendiente de recogida |
+| En devolución         |
+| Retenido en aduanas   |
+
+*/
+
+/*
+	*8.* Devuelve un listado con el código de cliente de aquellos clientes que
+realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
+aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+
+	**- Utilizando la función YEAR de MySQL.**
+*/
+
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	YEAR(fechaPago) = '2008'
+GROUP BY
+	codigoCliente;
+
+/*
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
+*/
+
+/*
+	**- Utilizando la función DATE_FORMAT de MySQL.**
+*/
+
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	DATE_FORMAT(fechaPago, "%Y") = '2008'
+GROUP BY
+	codigoCliente;
+
+/*
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
+*/
+
+
+/*
+	**- Sin utilizar ninguna de las funciones anteriores.**
+*/
+
+SELECT
+	fkCodigoCliente as codigoCliente
+FROM
+	pago
+WHERE
+	SUBSTRING(fechaPago, 1, LOCATE('-', fechaPago) - 1) = '2008'
+GROUP BY
+	codigoCliente;
+
+/*
+
+| codigoCliente |
+|:-------------:|
+|             1 |
+|             2 |
+|             4 |
+|             5 |
+|             6 |
+*/
+
 	r.fkIdPais = p.idPais AND 
 	p.idPais = 1;
