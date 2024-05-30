@@ -20,17 +20,3 @@ where
 	c.idCiudad = fkIdCiudad;
 
 
-+---------------+-------------------+
-| codigoOficina | nombre            |
-+ :----------:  + :---------------: +
-| OFCBARESP     | Barcelona         |
-| OFCBUCCOL     | Bucaramanga       |
-| OFCCALCOL     | Cali              |
-| OFCCDMXMEX    | Ciudad de México  |
-| OFCMADESP     | Madrid            |
-| OFCMEDCOL     | Medellín          |
-| OFCPACMEX     | Pachuca de Soto   |
-| OFCSEVESP     | Sevilla           |
-| OFCTOLMEX     | Toluca de Lerdo   |
-| OFCZARESP     | Zaragoza          |
-+---------------+-------------------+
