@@ -91,3 +91,22 @@ FROM
 WHERE
 	e.fkCargoEmpleado <> 8 AND
 	e.fkCargoEmpleado = ce.idCargoEmpleado;
+
+/*
+	*6.* Devuelve un listado con el nombre de los todos los clientes españoles.
+*/
+
+SELECT 	
+	cl.nombreCliente as Empresa
+FROM 	
+	cliente as cl,
+	direccionCliente as dc,
+	ciudad as c,
+	region as r,
+	pais as p
+WHERE 	
+	c.idCiudad = dc.fkIdCiudad AND
+	cl.codigoCliente = dc.fkCodigoCliente AND
+	c.fkIdRegion = r.idRegion AND
+	r.fkIdPais = p.idPais AND 
+	p.idPais = 1;
