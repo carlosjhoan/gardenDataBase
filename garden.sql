@@ -498,6 +498,17 @@ values	(1, 'Helecho A', 'ORNAMENTALES', '30cm de altura', 'Planta de exterior'),
 	(5, 'Begonia B', 'ORNAMENTALES', '15 cm', 'Planta de exterior'),
 	(6, 'Begonia C', 'ORNAMENTALES', '18 cm', 'Planta de exterior');
 
+insert into producto
+values	(7, 'Semilla Naranja', 'FRUTALES', NULL, 'Sembrarse en terreno seco'),
+	(8, 'Semilla Maracuyá', 'FRUTALES', NULL, 'Sembrarse en terreno seco'),
+	(9, 'Semilla Mandarina', 'FRUTALES', NULL, 'Sembrarse en terreno húmedo'),
+	(10, 'Semilla Mora castilla', 'FRUTALES', NULL, 'Sembrarse en terreno páramo'),
+	(11, 'Semilla Curuba', 'FRUTALES', NULL, 'Sembrarse en terreno seco'),
+	(12, 'Semilla Chirimoya', 'FRUTALES', NULL, 'Sembrarse en terreno seco o húmedo'),
+	(13, 'Tijera De Poda Jardinería Mango Cubierto', 'HERRAMIENTAS', 'Largo 20cm', 'Herramientas manual para cortar arbustos'),
+	(14, 'Guadañadora Podadora Trabajo Pesado Gasolina', 'HERRAMIENTAS' , '150cm de largo', 'Podadora de combustible para usarse con árboles grandes o en cultivos de hoja pesada como el maíz');
+
+
 -- Inserciones en la tabla proveedor
 insert into proveedor(nombre, nit, fkIdCiudad, email)
 values	('SEVILLA PLANTAS S.A', 'SA10021012', 1, 'sevilla_plantasSA@gmail.com'),
@@ -519,3 +530,4 @@ values	(1, 1, 125, 15000.0, 9000.0),
 	(4, 8, 102, 9500, 7500.0),
 	(4, 4, 108, 12500.0, 10500.0),
 	(3, 2, 136, 6500.0, 3500.0);
+
