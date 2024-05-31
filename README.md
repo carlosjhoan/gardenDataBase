@@ -713,3 +713,200 @@ WHERE
 |:------------------------------:|:----------------:|:------------------:|:-------------:|
 | JARDÍN MADRILEÑO               | Ángela           | Gutierrez Arango   | Madrid        |
 | INDUSTRIAL JARDINERA DE MADRID | Daniel           | Tobón Comba        | Medellín      |
+
+
+	*6.* Lista la dirección de las oficinas que tengan clientes en Madrid.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	do.direccion,
+	c.nombre as CiudadCliente
+FROM
+	ciudad as c
+INNER JOIN
+	direccionCliente as dc
+ON
+	c.idCiudad = dc.fkIdCiudad
+INNER JOIN
+	cliente as cl
+ON
+	cl.codigoCliente = dc.fkCodigoCliente
+INNER JOIN
+	empleado as e
+ON
+	e.codigoEmpleado = cl.fkCodigoEMpleadoRepVentas
+INNER JOIN
+	oficina as ofc
+ON
+	ofc.codigoOficina = e.fkCodigoOficina
+INNER JOIN
+	direccionOficina as do
+ON
+	do.fkCodigoOficina = ofc.codigoOficina
+WHERE
+	c.idCiudad = 4;
+~~~~
+
+
+### Resultado
+
+| direccion                      | CiudadCliente |
+|:------------------------------:|:------:|
+| C. de Montalbán, 1, Retiro     | Madrid |
+| Cl 44 #52 - 165, La Candelaria | Madrid |
+
+	
+
+*7.* Devuelve el nombre de los clientes y el nombre de sus representantes junto
+con la ciudad de la oficina a la que pertenece el representante.
+
+
+~~~~mysql	
+SELECT
+	DISTINCT cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas,
+	c.nombre as CiudadOficina
+FROM
+	pago as p
+INNER JOIN
+	cliente as cl
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+INNER JOIN
+	oficina as ofc
+ON
+	ofc.codigoOficina = e.fkCodigoOficina
+INNER JOIN
+	direccionOficina as do
+ON
+	do.fkCodigoOficina = ofc.codigoOficina
+INNER JOIN
+	ciudad as c
+ON
+	c.idCiudad = do.fkIdCiudad;
+~~~~
+	
+### Resultado
+
+| Cliente                                        | nombreReprVentas | apellidoReprVentas | CiudadOficina |
+|:----------------------------------------------:|:----------------:|:------------------:|:-------------:|
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | Ángela           | Gutierrez Arango   | Madrid        |
+| AGRO-Spain Ingenieros                          | Mario            | Galvis Olago       | Zaragoza      |
+| Compo Iberia SL                                | Daniel           | Tobón Comba        | Medellín      |
+| Central Agroindustrial Mexiquense S.A. de C.V. | Ángela           | Gutierrez Arango   | Madrid        |
+| Punto Verde Agro Toluca                        | María            | Correa Martínez    | Medellín      |
+| AGROPECUARIA RIO FRIO LTDA                     | Daniel           | Tobón Comba        | Medellín      |
+	
+	
+
+*8.* Devuelve un listado con el nombre de los empleados junto con el nombre
+de sus jefes.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.nombre as nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoEmpleado,
+	j.nombre as nombreJefe,
+	CONCAT(j.apellido1, ' ', j.apellido2) as apellidoJefe
+FROM
+	empleado as e
+INNER JOIN
+	empleado as j
+ON
+	e.fkCodigoJefe = j.codigoEmpleado;
+~~~~
+ 
+### Resultado
+
+| nombreEmpleado  | apellidoEmpleado | nombreJefe      | apellidoJefe     |
+|:---------------:|:----------------:|:---------------:|:----------------:|
+| Luis Alfonso    | Gómez Mancilla   | Carlos Jhoan    | Aguilar Galvis   |
+| Javier Augusto  | Galvis Chacón    | Luis Alfonso    | Gómez Mancilla   |
+| Julio César     | Galvis Chacón    | Javier Augusto  | Galvis Chacón    |
+| Sandra Patricia | González Amador  | Carlos Jhoan    | Aguilar Galvis   |
+| Clara Milena    | Aguilar Bella    | Sandra Patricia | González Amador  |
+| Juan David      | Gómez Benavides  | Carlos Jhoan    | Aguilar Galvis   |
+| Ángela          | Gutierrez Arango | Juan David      | Gómez Benavides  |
+| Daniel          | Tobón Comba      | Juan David      | Gómez Benavides  |
+| María           | Correa Martínez  | Juan David      | Gómez Benavides  |
+| Mario           | Galvis Olago     | Juan David      | Gómez Benavides  |
+
+
+*9.* Devuelve un listado que muestre el nombre de cada empleados, el nombre
+de su jefe y el nombre del jefe de sus jefe.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.nombre as nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoEmpleado,
+	j.nombre as nombreJefe,
+	CONCAT(j.apellido1, ' ', j.apellido2) as apellidoJefe,
+	f.nombre as nombreJefeJefe,
+	CONCAT(f.apellido1, ' ', f.apellido2) as apellidoJefeJefe
+FROM
+	empleado as e
+INNER JOIN
+	empleado as j
+ON
+	e.fkCodigoJefe = j.codigoEmpleado
+INNER JOIN
+	empleado as f
+ON
+	j.fkCodigoJefe = f.codigoEmpleado;	
+~~~~
+	
+### Resultado
+
+| nombreEmpleado | apellidoEmpleado | nombreJefe      | apellidoJefe     | nombreJefeJefe | apellidoJefeJefe |
+|:--------------:|:----------------:|:---------------:|:----------------:|:--------------:|:----------------:|
+| Javier Augusto | Galvis Chacón    | Luis Alfonso    | Gómez Mancilla   | Carlos Jhoan   | Aguilar Galvis   |
+| Julio César    | Galvis Chacón    | Javier Augusto  | Galvis Chacón    | Luis Alfonso   | Gómez Mancilla   |
+| Clara Milena   | Aguilar Bella    | Sandra Patricia | González Amador  | Carlos Jhoan   | Aguilar Galvis   |
+| Ángela         | Gutierrez Arango | Juan David      | Gómez Benavides  | Carlos Jhoan   | Aguilar Galvis   |
+| Daniel         | Tobón Comba      | Juan David      | Gómez Benavides  | Carlos Jhoan   | Aguilar Galvis   |
+| María          | Correa Martínez  | Juan David      | Gómez Benavides  | Carlos Jhoan   | Aguilar Galvis   |
+| Mario          | Galvis Olago     | Juan David      | Gómez Benavides  | Carlos Jhoan   | Aguilar Galvis   |
+
+
+
+*10.* Devuelve el nombre de los clientes a los que no se les ha entregado a
+tiempo un pedido.
+
+
+~~~~mysql
+SELECT
+	cl.nombreCliente,
+	p.fechaEsperada,
+	p.fechaEntrega
+FROM
+	cliente as cl
+INNER JOIN
+	pedido as p
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+WHERE
+	DATEDIFF(p.fechaEsperada, p.fechaEntrega) < 0;
+~~~~
+
+### Resultado
+
+| nombreCliente                                  | fechaEsperada | fechaEntrega |
+|:----------------------------------------------:|:-------------:|:------------:|
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | 2008-07-20    | 2008-07-23   |
+| AGRO-Spain Ingenieros                          | 2008-04-20    | 2008-05-02   |
+| Central Agroindustrial Mexiquense S.A. de C.V. | 2008-10-21    | 2008-10-23   |
+| Casagro                                        | 2007-04-03    | 2007-04-23   |
+
