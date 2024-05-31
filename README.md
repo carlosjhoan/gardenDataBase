@@ -532,7 +532,7 @@ WHERE
 representante de ventas.
 
 ### Consulta
-~~~~mysqlç
+~~~~mysql
 SELECT 
 	cl.nombreCliente as Cliente,
 	e.nombre as nombreReprVentas,
@@ -561,3 +561,36 @@ ON
 | INDUSTRIAL JARDINERA DE MADRID                 | Daniel           | Tobón Comba        |
 
 
+*2.* Muestra el nombre de los clientes que hayan realizado pagos junto con el
+nombre de sus representantes de ventas.
+
+### Consulta
+~~~~mysql
+SELECT
+	DISTINCT cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas
+FROM
+	pago as p
+INNER JOIN
+	cliente as cl
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado;
+~~~~
+
+### Resultado
+
+| Cliente                                        | nombreReprVentas | apellidoReprVentas |
+|:----------------------------------------------:|:----------------:|:------------------:|
+| AGRO-Spain Ingenieros                          | Mario            | Galvis Olago       |
+| Agropecuària de Moià                           | NULL             | NULL               |
+| AGROPECUARIA RIO FRIO LTDA                     | Daniel           | Tobón Comba        |
+| Casagro                                        | NULL             | NULL               |
+| Central Agroindustrial Mexiquense S.A. de C.V. | Ángela           | Gutierrez Arango   |
+| Compo Iberia SL                                | Daniel           | Tobón Comba        |
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | Ángela           | Gutierrez Arango   |
+| Punto Verde Agro Toluca                        | María            | Correa Martínez    |
