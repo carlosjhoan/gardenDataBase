@@ -716,7 +716,7 @@ WHERE
 | INDUSTRIAL JARDINERA DE MADRID | Daniel           | Tobón Comba        | Medellín      |
 
 
-	*6.* Lista la dirección de las oficinas que tengan clientes en Madrid.
+*6.* Lista la dirección de las oficinas que tengan clientes en Madrid.
 
 ### Consulta
 
