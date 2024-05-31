@@ -485,6 +485,10 @@ values 	(13, '2011-10-30', '2012-01-05', '2012-01-04', 3, 'Entrega exitosa', 1),
 insert into gama_producto
 values ('ORNAMENTALES', 'Las plantas de ornato, o plantas ornamentales, no son un tipo ni una familia concreta dentro del género de plantas. Se trata de cualquier planta que cultivemos y cuidemos con el propósito de embellecer o hacer más estético un lugar o espacio determinado.', 'Plantas para embellecer', './ornamental.jpg');
 
+insert into gama_producto
+values	('FRUTALES', 'Todo lo relacionado con àrboles frutales, ya sea: semillas, ramamles de siembra, injertos', 'árboles frutales', './frutal.jpg'),
+	('HERRAMIENTAS', 'Aquí se dispondrán todas las herramientas manuales y eléctricas para el uso del cuidado de cultivos y de jardines', 'herramientas', './herramienta.jpg'); 
+
 -- Inserciones en la tabla producto
 insert into producto
 values	(1, 'Helecho A', 'ORNAMENTALES', '30cm de altura', 'Planta de exterior'),
