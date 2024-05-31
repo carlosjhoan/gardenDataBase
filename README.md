@@ -671,3 +671,45 @@ ON
 | Punto Verde Agro Toluca                        | María            | Correa Martínez    | Medellín      |
 | AGROPECUARIA RIO FRIO LTDA                     | Daniel           | Tobón Comba        | Medellín      |
 
+*5.* Devuelve el nombre de los clientes que no hayan hecho pagos y el nombre
+de sus representantes junto con la ciudad de la oficina a la que pertenece el
+representante.
+
+~~~~mysql
+SELECT
+	DISTINCT cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas,
+	c.nombre as CiudadOficina
+FROM
+	pago as p
+RIGHT JOIN
+	cliente as cl
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+INNER JOIN
+	oficina as ofc
+ON
+	ofc.codigoOficina = e.fkCodigoOficina
+INNER JOIN
+	direccionOficina as do
+ON
+	do.fkCodigoOficina = ofc.codigoOficina
+INNER JOIN
+	ciudad as c
+ON
+	c.idCiudad = do.fkIdCiudad
+WHERE
+	p.idTransaccion is NULL;
+~~~~
+
+### Resultado
+
+| Cliente                        | nombreReprVentas | apellidoReprVentas | CiudadOficina |
+|:------------------------------:|:----------------:|:------------------:|:-------------:|
+| JARDÍN MADRILEÑO               | Ángela           | Gutierrez Arango   | Madrid        |
+| INDUSTRIAL JARDINERA DE MADRID | Daniel           | Tobón Comba        | Medellín      |
