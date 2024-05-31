@@ -838,3 +838,44 @@ WHERE
 | Central Agroindustrial Mexiquense S.A. de C.V. | 2008-10-21    | 2008-10-23   |
 | Casagro                                        | 2007-04-03    | 2007-04-23   |
 */
+
+
+/*
+	*11.* Devuelve un listado de las diferentes gamas de producto que ha comprado
+cada cliente.
+*/
+
+SELECT
+	gm.idGama,
+	cl.nombreCliente
+FROM
+	cliente as cl
+INNER JOIN
+	pedido as pd
+ON
+	cl.codigoCliente = pd.fkCodigoCliente
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = pd.codigoPedido
+INNER JOIN
+	producto as p
+ON
+	p.codigoProducto = dp.fkCodigoProducto
+INNER JOIN
+	gama_producto as gm
+ON
+	gm.idGama = p.fkIdGama;
+	
+/*
+| idGama       | nombreCliente                                  |
+|:------------:|:----------------------------------------------:|
+| ORNAMENTALES | Central Agroindustrial Mexiquense S.A. de C.V. |
+| FRUTALES     | Punto Verde Agro Toluca                        |
+| HERRAMIENTAS | EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         |
+| HERRAMIENTAS | Central Agroindustrial Mexiquense S.A. de C.V. |
+| ORNAMENTALES | EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         |
+| ORNAMENTALES | Punto Verde Agro Toluca                        |
+| FRUTALES     | EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         |
+| FRUTALES     | Central Agroindustrial Mexiquense S.A. de C.V. |
+*/
