@@ -386,6 +386,9 @@ values	(001, 'EXPLOTACIONES AGRICOLAS VALJIMENO S.L.', 87, 150000000.0),
 	(006, 'Punto Verde Agro Toluca', 107, 15000000.0),
 	(007, 'AGROPECUARIA RIO FRIO LTDA', 97, 10000000.0),
 	(008, 'Casagro', NULL, 5000000);
+
+insert into cliente
+values	(9, 'JARDÍN MADRILEÑO', 87, 90000.0);
 	
 -- Inserciones en la tabla direccionCliente
 insert into direccionCliente(direccion, fkIdCiudad, fkIdTipoDireccion, fkCodigoCliente)
@@ -399,7 +402,10 @@ values 	('Pl. de Cuba, 5', 1, 3, 1),
 	('Aurora. Santander #21 - 57', 5, 3, 7),
 	('Carrera 35 #52-45, Cabecera', 5, 2, 7),
 	('Av. Quebrada Seca #18 - 77, Comuna 4 Occidental', 5, 3, 7);
-	
+
+insert into direccionCliente(direccion, fkIdCiudad, fkIdTipoDireccion, fkCodigoCliente)
+values 	('Pl. Juan de DIos, 13', 4, 3, 9);
+
 -- Inserciones en la tabla estadoPedido
 insert into estadoPedido(estado)
 values 	('Creado'),
