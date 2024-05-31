@@ -150,6 +150,7 @@ WHERE
 | Clara Milena    | Aguilar Bella    | Tesorero               |
 | Juan David      | Gómez Benavides  | Jefe de Ventas         |
 
+
 *6.* Devuelve un listado con el nombre de los todos los clientes españoles.
 
 ### Consulta
