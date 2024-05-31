@@ -442,3 +442,36 @@ WHERE
 | JARDÍN MADRILEÑO               |                        87 |
 | INDUSTRIAL JARDINERA DE MADRID |                        97 |
 */
+
+-- CONSULTAS MULTITABLA
+
+/*
+	*1.* Obtén un listado con el nombre de cada cliente y el nombre y apellido de su
+representante de ventas.
+*/
+
+SELECT 
+	cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas
+FROM
+	cliente as cl
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado;
+	
+/*
+| Cliente                                        | nombreReprVentas | apellidoReprVentas |
++------------------------------------------------+------------------+--------------------+
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | Ángela           | Gutierrez Arango   |
+| AGRO-Spain Ingenieros                          | Mario            | Galvis Olago       |
+| Agropecuària de Moià                           | NULL             | NULL               |
+| Compo Iberia SL                                | Daniel           | Tobón Comba        |
+| Central Agroindustrial Mexiquense S.A. de C.V. | Ángela           | Gutierrez Arango   |
+| Punto Verde Agro Toluca                        | María            | Correa Martínez    |
+| AGROPECUARIA RIO FRIO LTDA                     | Daniel           | Tobón Comba        |
+| Casagro                                        | NULL             | NULL               |
+| JARDÍN MADRILEÑO                               | Ángela           | Gutierrez Arango   |
+| INDUSTRIAL JARDINERA DE MADRID                 | Daniel           | Tobón Comba        |
+*/
