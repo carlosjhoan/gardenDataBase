@@ -428,10 +428,12 @@ ORDER BY
 | AHJ51215055   | 2008-07-02 |  3540000.00 |
 | FGH51651654   | 2008-03-14 |  2560000.00 |
 
+
 *14.* Devuelve un listado con todas las formas de pago que aparecen en la
 tabla pago. Tenga en cuenta que no deben aparecer formas de pago
 repetidas.
 
+### Consulta
 ~~~~mysql
 SELECT
 	f.formaDePago
@@ -456,3 +458,41 @@ GROUP BY
 | Paypal                |
 
 
+*15.* Devuelve un listado con todos los productos que pertenecen a la
+gama Ornamentales y que tienen más de 100 unidades en stock. El listado
+deberá estar ordenado por su precio de venta, mostrando en primer lugar
+los de mayor precio.
+
+### Consulta
+~~~~mysql
+SELECT
+	p.nombre as Producto,
+	pp.cantidaEnStock as stock,
+	pp.precioVenta,
+	pr.nombre as Proveedor
+FROM
+	producto as p,
+	productoProveedor as pp,
+	gama_producto as gm,
+	proveedor as pr
+WHERE
+	p.fkIdGama = gm.idGama AND
+	p.codigoProducto = pp.fkCodigoProducto AND
+	pr.idProveedor = pp.fkIdProveedor AND
+	gm.idGama = 'ORNAMENTALES' AND
+	pp.cantidaEnStock > 100
+ORDER BY
+	pp.precioVenta DESC;
+~~~~
+
+
+### Resultado
+
+| Producto  | stock | precioVenta | Proveedor                  |
+|:---------:|:-----:|:-----------:|:--------------------------:|
+| Helecho A |   125 |    15000.00 | SEVILLA PLANTAS S.A        |
+| Helecho A |   109 |    13000.00 | VERDE COBRIZO              |
+| Begonia A |   108 |    12500.00 | ROSITAS DE KYOTO S.A       |
+| Helecho B |   135 |    11000.00 | MIS PLANTOTAS BUACARAMANGA |
+| Begonia A |   102 |     9500.00 | ORQUÍDEA JUÁREZ            |
+| Helecho C |   136 |     6500.00 | JARDIN EDÉN ZARAGOZA       |
