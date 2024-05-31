@@ -481,6 +481,16 @@ values 	(13, '2011-10-30', '2012-01-05', '2012-01-04', 3, 'Entrega exitosa', 1),
 	(15, '2011-10-30', '2012-01-10', '2012-01-09', 3, 'Entrega exitosa', 3),
 	(16, '2011-10-21', '2012-01-20', '2010-01-15', 3, 'Entrega exitosa', 4);
 
+insert into detallePedido
+values	(1, 2, 25, 11000.0, 2),
+	(1, 7, 150,1200.0, 3),
+	(1, 13, 2, 65000.0, 4),
+	(5, 1, 10, 15000.0, 2),
+	(5, 9, 75, 980.0, 3),
+	(5, 14, 2, 1200000.0, 4),
+	(6, 4, 5, 9500.0, 2),
+	(6, 10, 125, 845.0, 2);
+
 -- Inserciones en la tabla gama_producto
 insert into gama_producto
 values ('ORNAMENTALES', 'Las plantas de ornato, o plantas ornamentales, no son un tipo ni una familia concreta dentro del género de plantas. Se trata de cualquier planta que cultivemos y cuidemos con el propósito de embellecer o hacer más estético un lugar o espacio determinado.', 'Plantas para embellecer', './ornamental.jpg');
