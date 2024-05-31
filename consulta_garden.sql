@@ -509,3 +509,32 @@ ON
 | JARDÍN MADRILEÑO                               | Ángela           | Gutierrez Arango   |
 | INDUSTRIAL JARDINERA DE MADRID                 | Daniel           | Tobón Comba        |
 */
+
+/*
+	*3.* Muestra el nombre de los clientes que no hayan realizado pagos junto con
+el nombre de sus representantes de ventas.
+*/
+	
+SELECT
+	DISTINCT cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas
+FROM
+	pago as p
+RIGHT JOIN
+	cliente as cl
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+WHERE
+	p.idTransaccion is NULL;
+	
+/*
+| Cliente                        | nombreReprVentas | apellidoReprVentas |
+|:------------------------------:|:----------------:|:------------------:|
+| JARDÍN MADRILEÑO               | Ángela           | Gutierrez Arango   |
+| INDUSTRIAL JARDINERA DE MADRID | Daniel           | Tobón Comba        |
+*/
