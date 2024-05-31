@@ -418,3 +418,27 @@ ORDER BY
 | Begonia A |   102 |     9500.00 | ORQUÍDEA JUÁREZ            |
 | Helecho C |   136 |     6500.00 | JARDIN EDÉN ZARAGOZA       |
 */
+
+/*
+	*16.* Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y
+cuyo representante de ventas tenga el código de empleado 87 o 97.
+*/
+
+SELECT 
+	cl.nombreCliente,
+	cl.fkCodigoEMpleadoRepVentas
+FROM
+	cliente as cl,
+	direccionCliente as dc,
+	ciudad as c
+WHERE
+	dc.fkCodigoCliente = cl.codigoCliente AND
+	c.idCiudad = dc.fkIdCiudad AND
+	c.idCiudad = 4;
+
+/*
+| nombreCliente                  | fkCodigoEMpleadoRepVentas |
+|:------------------------------:|:-------------------------:|
+| JARDÍN MADRILEÑO               |                        87 |
+| INDUSTRIAL JARDINERA DE MADRID |                        97 |
+*/
