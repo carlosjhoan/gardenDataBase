@@ -953,4 +953,96 @@ ON
 | FRUTALES     | EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         |
 | FRUTALES     | Central Agroindustrial Mexiquense S.A. de C.V. |
 
+-- CONSULTAS MULTITABLA (externa)
+
+
+*1*. Devuelve un listado que muestre solamente los clientes que no han
+realizado ningún pago.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	cl.nombreCliente
+FROM
+	cliente as cl
+LEFT JOIN
+	pago as p
+ON
+	cl.codigoCliente = p.fkCodigoCliente
+WHERE
+	p.fkCodigoCliente is NULL;
+~~~~	
+
+### Resultado
+
+| nombreCliente                  |
+|:------------------------------:|
+| JARDÍN MADRILEÑO               |
+| INDUSTRIAL JARDINERA DE MADRID |
+
+	
+
+*2.* Devuelve un listado que muestre solamente los clientes que no han
+realizado ningún pedido.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	cl.nombreCliente,
+	pd.codigoPedido
+FROM
+	cliente as cl
+LEFT JOIN
+	pedido as pd
+ON
+	cl.codigoCliente = pd.fkCodigoCliente
+WHERE
+	pd.codigoPedido is NULL;
+~~~~
+
+### Resultado
+
+| nombreCliente                  | codigoPedido |
+|:------------------------------:|:------------:|
+| JARDÍN MADRILEÑO               |         NULL |
+| INDUSTRIAL JARDINERA DE MADRID |         NULL |
+
+
+*3.* Devuelve un listado que muestre los clientes que no han realizado ningún
+pago y los que no han realizado ningún pedido.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	cl.nombreCliente,
+	p.fkCodigoCliente,
+	pd.codigoPedido
+FROM
+	cliente as cl
+LEFT JOIN
+	pago as p
+ON
+	cl.codigoCliente = p.fkCodigoCliente
+
+LEFT JOIN
+	pedido as pd
+ON
+	cl.codigoCliente = pd.fkCodigoCliente
+WHERE
+	pd.codigoPedido is NULL OR
+	p.fkCodigoCliente is NULL;
+~~~~
+
+### Resultado
+
+| nombreCliente                  | codigoPedido |
+|:------------------------------:|:------------:|
+| JARDÍN MADRILEÑO               |         NULL |
+| INDUSTRIAL JARDINERA DE MADRID |         NULL |
 
