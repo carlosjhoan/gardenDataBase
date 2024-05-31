@@ -624,3 +624,50 @@ WHERE
 |:------------------------------:|:----------------:|:------------------:|
 | JARDÍN MADRILEÑO               | Ángela           | Gutierrez Arango   |
 | INDUSTRIAL JARDINERA DE MADRID | Daniel           | Tobón Comba        |
+
+*4.* Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus
+representantes junto con la ciudad de la oficina a la que pertenece el
+representante.
+
+### Consulta
+~~~~mysql
+SELECT
+	DISTINCT cl.nombreCliente as Cliente,
+	e.nombre as nombreReprVentas,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoReprVentas,
+	c.nombre as CiudadOficina
+FROM
+	pago as p
+INNER JOIN
+	cliente as cl
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+INNER JOIN
+	oficina as ofc
+ON
+	ofc.codigoOficina = e.fkCodigoOficina
+INNER JOIN
+	direccionOficina as do
+ON
+	do.fkCodigoOficina = ofc.codigoOficina
+INNER JOIN
+	ciudad as c
+ON
+	c.idCiudad = do.fkIdCiudad;
+~~~~
+
+### Resultado
+
+| Cliente                                        | nombreReprVentas | apellidoReprVentas | CiudadOficina |
+|:----------------------------------------------:|:----------------:|:------------------:|:-------------:|
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | Ángela           | Gutierrez Arango   | Madrid        |
+| AGRO-Spain Ingenieros                          | Mario            | Galvis Olago       | Zaragoza      |
+| Compo Iberia SL                                | Daniel           | Tobón Comba        | Medellín      |
+| Central Agroindustrial Mexiquense S.A. de C.V. | Ángela           | Gutierrez Arango   | Madrid        |
+| Punto Verde Agro Toluca                        | María            | Correa Martínez    | Medellín      |
+| AGROPECUARIA RIO FRIO LTDA                     | Daniel           | Tobón Comba        | Medellín      |
+
