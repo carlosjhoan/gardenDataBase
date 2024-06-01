@@ -525,7 +525,7 @@ WHERE
 | JARDÍN MADRILEÑO               |                        87 |
 | INDUSTRIAL JARDINERA DE MADRID |                        97 |
 
-# Consulta multitabla
+# Consulta multitabla (interna)
 
 ## Desarrollo
 
@@ -953,8 +953,8 @@ ON
 | FRUTALES     | EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         |
 | FRUTALES     | Central Agroindustrial Mexiquense S.A. de C.V. |
 
--- CONSULTAS MULTITABLA (externa)
-
+  
+# CONSULTAS MULTITABLA (externa)
 
 *1*. Devuelve un listado que muestre solamente los clientes que no han
 realizado ningún pago.
