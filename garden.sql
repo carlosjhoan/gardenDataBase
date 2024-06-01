@@ -488,7 +488,9 @@ values 	(13, '2011-10-30', '2012-01-05', '2012-01-04', 3, 'Entrega exitosa', 1),
 	(15, '2011-10-30', '2012-01-10', '2012-01-09', 3, 'Entrega exitosa', 3),
 	(16, '2011-10-21', '2012-01-20', '2010-01-15', 3, 'Entrega exitosa', 4);
 
-
+insert into pedido
+values 	(17, '2023-11-30', '2024-02-14', NULL, 1, 'Pedido recién creado', 9),
+	(18, '2024-04-15', '2024-06-10', NULL, 2, 'Va llegando al cliente', 10);
 
 -- Inserciones en la tabla gama_producto
 insert into gama_producto
