@@ -1659,7 +1659,7 @@ GROUP BY
 
 ## Resultado
 | nombreEmpleado | apellidoEmpleado | numClientes |
-|:--------------:|:-----------------+------------:|
+|:--------------:|:----------------:|:-----------:|
 | Ángela         | Gutierrez Arango |           3 |
 | Daniel         | Tobón Comba      |           3 |
 | María          | Correa Martínez  |           1 |
