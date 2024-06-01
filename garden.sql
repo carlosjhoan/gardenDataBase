@@ -80,6 +80,9 @@ CREATE TABLE producto(
 	CONSTRAINT fk_id_gama_producto FOREIGN KEY(fkIdGama) REFERENCES gama_producto(idGama)
 );
 
+ALTER TABLE producto
+ADD imagen VARCHAR(50);
+
 -- Creación de la tabla productoProveedor
 CREATE TABLE productoProveedor(
 	fkCodigoProducto VARCHAR(15) NOT NULL,
