@@ -148,7 +148,7 @@ CREATE TABLE empleado(
 	apellido2 VARCHAR(50),
 	extension VARCHAR(10) NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	fkCodigoOficina VARCHAR(10) NOT NULL,
+	fkCodigoOficina VARCHAR(10),
 	fkCodigoJefe INT(11),
 	fkCargoEmpleado INT,
 	CONSTRAINT pk_codigo_empleado PRIMARY KEY(CodigoEmpleado),
