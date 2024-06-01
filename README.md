@@ -954,7 +954,9 @@ ON
 | FRUTALES     | Central Agroindustrial Mexiquense S.A. de C.V. |
 
   
-# CONSULTAS MULTITABLA (externa)
+# Consultas multitabla (externa)
+
+## Desarrollo
 
 *1*. Devuelve un listado que muestre solamente los clientes que no han
 realizado ningún pago.
