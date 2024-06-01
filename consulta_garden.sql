@@ -1294,3 +1294,252 @@ WHERE
 |         121 | Karen Julieth   | Quintero Hernández  |     120 | José Mauricio   | Manosalva Buitrago |
 */
 
+/*
+# Consultas resumen
+*/
+
+/*
+*1.* ¿Cuántos empleados hay en la compañía?
+*/
+
+SELECT
+	COUNT(*) AS numEmpleados
+FROM
+	empleado;
+
+
+/*
+| numEmpleados |
+|:------------:|
+|           13 |
+*/
+
+/*
+*2.* ¿Cuántos clientes tiene cada país?
+*/
+
+SELECT 	
+	p.nombre as País,
+	COUNT(*) as numClientes
+FROM 	
+	cliente as cl,
+	direccionCliente as dc,
+	ciudad as c,
+	region as r,
+	pais as p
+WHERE 	
+	c.idCiudad = dc.fkIdCiudad AND
+	cl.codigoCliente = dc.fkCodigoCliente AND
+	c.fkIdRegion = r.idRegion AND
+	r.fkIdPais = p.idPais
+GROUP BY
+	 p.nombre;
+
+/*
+| País     | numClientes |
+|:--------:|:-----------:|
+| España   |           6 |
+| México   |           3 |
+| Colombia |           3 |
+*/
+
+/*
+*3.* 3. ¿Cuál fue el pago medio en 2008?
+*/
+
+SELECT
+	AVG(total) as pagoMedio2008
+FROM
+	pago
+WHERE
+	YEAR(fechaPago) = '2008';
+	
+/*
+| pagoMedio2008  |
+|:--------------:|
+| 5127454.545455 |
+*/
+
+/*
+*4.* ¿Cuántos pedidos hay en cada estado? Ordena el resultado de forma
+descendente por el número de pedidos.
+*/
+
+SELECT
+	ep.estado as estadoPedido,
+	COUNT(ped.codigoPedido) as numPedidos
+FROM
+	pedido as ped
+RIGHT JOIN
+	estadoPedido as ep
+ON
+	ped.fkIdEstado = ep.idEstadoPedido
+GROUP BY
+	ep.estado
+ORDER BY
+	numPedidos DESC;
+
+/*
+| estadoPedido          | numPedidos |
+|:---------------------:|:----------:|
+| Entregado             |         10 |
+| Rechazado             |          4 |
+| Creado                |          2 |
+| En tránsito           |          2 |
+| Destinatario ausente  |          0 |
+| Pendiente de recogida |          0 |
+| En devolución         |          0 |
+| Retenido en aduanas   |          0 |
+*/
+
+
+/*
+*5.* Calcula el precio de venta del producto más caro y más barato en una
+misma consulta.
+*/
+
+(SELECT
+	MAX(pp.precioVenta) as Precio, 'Más caro' as Caracteristica
+FROM
+	producto as pd
+INNER JOIN
+	productoProveedor as pp
+ON
+	pp.fkCodigoProducto = pd.codigoProducto
+INNER JOIN
+	proveedor as pr
+ON
+	pr.idProveedor = pp.fkIdProveedor)
+	
+UNION
+
+(SELECT
+	MIN(pp.precioVenta) as Precio, 'Más barato' as Caracteristica
+FROM
+	producto as pd
+INNER JOIN
+	productoProveedor as pp
+ON
+	pp.fkCodigoProducto = pd.codigoProducto
+INNER JOIN
+	proveedor as pr
+ON
+	pr.idProveedor = pp.fkIdProveedor);
+
+
+/*
+| Precio     | Caracteristica |
+|:----------:|:--------------:|
+| 1200000.00 | Más caro       |
+|     553.00 | Más barato     |
+*/
+
+/*
+*6.* Calcula el número de clientes que tiene la empresa.
+*/
+
+SELECT
+	COUNT(*) as numClientes
+FROM
+	cliente;
+
+
+/*
+| numClientes |
+|:-----------:|
+|          12 |
+*/
+
+/*
+*7.* ¿Cuántos clientes existen con domicilio en la ciudad de Madrid?
+*/
+
+SELECT 	
+	COUNT(*) as numClientesMadrid
+FROM 	
+	cliente as cl,
+	direccionCliente as dc,
+	ciudad as c
+WHERE 	
+	c.idCiudad = dc.fkIdCiudad AND
+	cl.codigoCliente = dc.fkCodigoCliente AND
+	c.idCiudad = 4;
+
+/*
+| numClientesMadrid |
+|:-----------------:|
+|                 2 |
+*/
+
+/*
+*8.*  ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
+por M?
+*/
+
+SELECT 	
+	c.nombre as Ciudad,
+	COUNT(*) as numClientes
+FROM 	
+	cliente as cl,
+	direccionCliente as dc,
+	ciudad as c
+WHERE 	
+	c.idCiudad = dc.fkIdCiudad AND
+	cl.codigoCliente = dc.fkCodigoCliente AND
+	c.nombre LIKE 'M%'
+GROUP BY
+	c.nombre;
+
+/*
+| Ciudad | numClientes |
+|:------:|:-----------:|
+| Madrid |           2 |
+*/
+
+/*
+*9.* Devuelve el nombre de los representantes de ventas y el número de clientes
+al que atiende cada uno.
+*/
+
+SELECT
+	e.nombre as nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoEmpleado,
+	COUNT(*) as numClientes
+FROM
+	empleado as e,
+	cliente as cl
+WHERE
+	e.codigoEmpleado = cl.fkCodigoEMpleadoRepVentas
+GROUP BY
+	e.codigoEmpleado;
+
+/*
+| nombreEmpleado | apellidoEmpleado | numClientes |
+|:--------------:|:-----------------+------------:|
+| Ángela         | Gutierrez Arango |           3 |
+| Daniel         | Tobón Comba      |           3 |
+| María          | Correa Martínez  |           1 |
+| Mario          | Galvis Olago     |           3 |
+*/
+
+/*
+*10.* Calcula el número de clientes que no tiene asignado representante de
+ventas.
+*/
+
+SELECT
+	COUNT(*) as numClienteNoReprVentas
+FROM
+	cliente as cl
+LEFT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+WHERE
+	e.codigoEmpleado is NULL;
+	
+/*
+| numClienteNoReprVentas |
++------------------------+
+|                      2 |
+*/
