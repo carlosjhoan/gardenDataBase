@@ -1688,6 +1688,5 @@ WHERE
 
 ### Resultado
 | numClienteNoReprVentas |
-+------------------------+
+|:----------------------:|
 |                      2 |
-
