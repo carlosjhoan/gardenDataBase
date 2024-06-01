@@ -1690,3 +1690,310 @@ WHERE
 | numClienteNoReprVentas |
 |:----------------------:|
 |                      2 |
+
+
+*11.* Calcula la fecha del primer y último pago realizado por cada uno de los
+clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.	
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	cl.nombreCliente,
+	MIN(p.fechaPago) as primerPago,
+	MAX(p.fechaPago) as ultimoPago
+FROM
+	cliente as cl
+INNER JOIN
+	pago as p
+ON
+	cl.codigoCliente = p.fkCodigoCliente
+GROUP BY
+	cl.codigoCliente;
+~~~~
+
+
+### Resultado
+
+| nombreCliente                                  | primerPago | ultimoPago |
+|:----------------------------------------------:|:----------:|:----------:|
+| EXPLOTACIONES AGRICOLAS VALJIMENO S.L.         | 2008-04-17 | 2010-07-15 |
+| Punto Verde Agro Toluca                        | 2008-08-18 | 2008-09-17 |
+| Agropecuària de Moià                           | 2008-01-10 | 2011-04-17 |
+| Compo Iberia SL                                | 2008-01-25 | 2008-01-25 |
+| Casagro                                        | 2007-01-25 | 2007-01-25 |
+| AGRO-Spain Ingenieros                          | 2008-03-14 | 2008-05-17 |
+| AGROPECUARIA RIO FRIO LTDA                     | 2020-04-17 | 2020-04-17 |
+| Central Agroindustrial Mexiquense S.A. de C.V. | 2008-10-20 | 2008-10-20 |	
+
+
+
+*12.* Calcula el número de productos diferentes que hay en cada uno de los
+pedidos.
+
+### Consulta
+
+~~~~mysql	
+SELECT
+	ped.codigoPedido,
+	COUNT(*) AS productDiferentes
+FROM
+	pedido as ped
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = ped.codigoPedido
+INNER JOIN
+	producto as pd
+ON
+	dp.fkCodigoProducto = pd.codigoProducto
+GROUP BY
+	ped.codigoPedido;
+~~~~	
+	
+
+### Resultado
+
+| codigoPedido | productDiferentes |
+|:------------:|:-----------------:|
+|            5 |                 3 |
+|            6 |                 2 |
+|            1 |                 3 |
+
+
+ 
+*13.* Calcula la suma de la cantidad total de todos los productos que aparecen en
+cada uno de los pedidos.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	ped.codigoPedido,
+	SUM(dp.cantidad) AS sumaProductos
+FROM
+	pedido as ped
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = ped.codigoPedido
+INNER JOIN
+	producto as pd
+ON
+	dp.fkCodigoProducto = pd.codigoProducto
+GROUP BY
+	ped.codigoPedido;
+~~~~
+
+ 
+### Resultado
+
+| codigoPedido | sumaProductos |
+|:------------:|:-------------:|
+|            1 |           177 |
+|            5 |            87 |
+|            6 |           130 |
+
+
+
+*14.* Devuelve un listado de los 5 productos más vendidos y el número total de
+unidades que se han vendido de cada uno. El listado deberá estar ordenado
+por el número total de unidades vendidas.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	pd.codigoProducto,
+	pd.nombre as Producto,
+	IFNULL(SUM(dp.cantidad), 0) AS cantidadProducto
+FROM
+	pedido as ped
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = ped.codigoPedido
+RIGHT JOIN
+	producto as pd
+ON
+	dp.fkCodigoProducto = pd.codigoProducto
+GROUP BY
+	pd.codigoProducto
+ORDER BY cantidadProducto DESC
+LIMIT 5;
+~~~~
+
+
+### Resultado
+
+| codigoProducto | Producto              | cantidadProducto |
+|:--------------:|:---------------------:|:----------------:|
+| 7              | Semilla Naranja       |              150 |
+| 10             | Semilla Mora castilla |              125 |
+| 9              | Semilla Mandarina     |               75 |
+| 2              | Helecho B             |               25 |
+| 1              | Helecho A             |               10 |
+
+
+
+*15.* La facturación que ha tenido la empresa en toda la historia, indicando la
+base imponible, el IVA y el total facturado. La base imponible se calcula
+sumando el coste del producto por el número de unidades vendidas de la
+tabla detalle_pedido. El IVA es el 21 % de la base imponible, y el total la
+suma de los dos campos anteriores.
+
+
+### Consulta
+
+~~~~mysql
+SELECT 
+	SUM(cantidadProducto) as basImponible,
+	(SUM(cantidadProducto)* 0.21) as IVA,
+	(SUM(cantidadProducto)* 0.21+ SUM(cantidadProducto))  as totalFacturado
+FROM
+	(
+	SELECT
+		SUM(dp.cantidad * dp.precioUnidad) AS cantidadProducto
+	FROM
+		pedido as ped
+	INNER JOIN
+		detallePedido as dp
+	ON
+		dp.fkCodigoPedido = ped.codigoPedido
+	INNER JOIN
+		producto as pd
+	ON
+		dp.fkCodigoProducto = pd.codigoProducto
+	GROUP BY
+		ped.codigoPedido) AS preciosCantidad;
+~~~~
+
+
+### Resultado
+
+| basImponible | IVA         | totalFacturado |
+|:------------:|:-----------:|:--------------:|
+|   3361625.00 | 705941.2500 |   4067566.2500 |
+
+
+
+*16.* La misma información que en la pregunta anterior, pero agrupada por
+código de producto.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	pd.codigoProducto,
+	pd.nombre as Producto,
+	SUM(dp.cantidad * dp.precioUnidad) as baseImponible,
+	(SUM(dp.cantidad * dp.precioUnidad) * 0.21) as IVA,
+	(SUM(dp.cantidad * dp.precioUnidad) * 1.21) as totalFacturado
+FROM
+	pedido as ped
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = ped.codigoPedido
+INNER JOIN
+	producto as pd
+ON
+	dp.fkCodigoProducto = pd.codigoProducto
+GROUP BY
+	pd.codigoProducto;
+~~~~
+
+
+### Resultado
+
+| codigoProducto | Producto                                      | baseImponible | IVA         | totalFacturado |
+|:--------------:|:---------------------------------------------:|:-------------:|:-----------:|:--------------:|
+| 13             | Tijera De Poda Jardinería Mango Cubierto      |     130000.00 |  27300.0000 |    157300.0000 |
+| 2              | Helecho B                                     |     275000.00 |  57750.0000 |    332750.0000 |
+| 7              | Semilla Naranja                               |     180000.00 |  37800.0000 |    217800.0000 |
+| 1              | Helecho A                                     |     150000.00 |  31500.0000 |    181500.0000 |
+| 14             | Guadañadora Podadora Trabajo Pesado Gasolina  |    2400000.00 | 504000.0000 |   2904000.0000 |
+| 9              | Semilla Mandarina                             |      73500.00 |  15435.0000 |     88935.0000 |
+| 10             | Semilla Mora castilla                         |     105625.00 |  22181.2500 |    127806.2500 |
+| 4              | Begonia A                                     |      47500.00 |   9975.0000 |     57475.0000 |
+
+
+
+*18.*  Lista las ventas totales de los productos que hayan facturado más de 60000
+COP. Se mostrará el nombre, unidades vendidas, total facturado y total
+facturado con impuestos (21% IVA).
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	
+	pd.nombre as Producto,
+	SUM(dp.cantidad) as unidadesVendidas,
+	SUM(dp.cantidad * dp.precioUnidad) as baseImponible,
+	(SUM(dp.cantidad * dp.precioUnidad) * 0.21) as IVA,
+	(SUM(dp.cantidad * dp.precioUnidad) * 1.21) as totalFacturado
+FROM
+	pedido as ped
+INNER JOIN
+	detallePedido as dp
+ON
+	dp.fkCodigoPedido = ped.codigoPedido
+INNER JOIN
+	producto as pd
+ON
+	dp.fkCodigoProducto = pd.codigoProducto
+GROUP BY
+	pd.codigoProducto
+HAVING
+	totalFacturado > 60000;
+~~~~
+
+
+
+### Resultado
+
+| Producto                                      | unidadesVendidas | baseImponible | IVA         | totalFacturado |
+|:---------------------------------------------:|:----------------:|:-------------:|:-----------:|:--------------:|
+| Tijera De Poda Jardinería Mango Cubierto      |                2 |     130000.00 |  27300.0000 |    157300.0000 |
+| Helecho B                                     |               25 |     275000.00 |  57750.0000 |    332750.0000 |
+| Semilla Naranja                               |              150 |     180000.00 |  37800.0000 |    217800.0000 |
+| Helecho A                                     |               10 |     150000.00 |  31500.0000 |    181500.0000 |
+| Guadañadora Podadora Trabajo Pesado Gasolina  |                2 |    2400000.00 | 504000.0000 |   2904000.0000 |
+| Semilla Mandarina                             |               75 |      73500.00 |  15435.0000 |     88935.0000 |
+| Semilla Mora castilla                         |              125 |     105625.00 |  22181.2500 |    127806.2500 |
+
+
+*19.* Muestre la suma total de todos los pagos que se realizaron para cada uno
+de los años que aparecen en la tabla pagos.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	YEAR(fechaPago) as Year,
+	SUM(total) as pagoTotal
+FROM
+	pago
+GROUP BY
+	Year
+ORDER BY
+	Year ASC;
+~~~~	
+
+
+### Resultado
+
+| Year | pagoTotal   |
+|:----:|:-----------:|
+| 2007 |  2500000.00 |
+| 2008 | 56402000.00 |
+| 2010 |  9000000.00 |
+| 2011 |  5750000.00 |
+| 2020 |  7500000.00 |
+
+
