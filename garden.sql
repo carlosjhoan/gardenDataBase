@@ -399,6 +399,10 @@ values	(9, 'JARDÍN MADRILEÑO', 87, 90000.0);
 
 insert into cliente
 values	(10, 'INDUSTRIAL JARDINERA DE MADRID', 97, 15000000.0);
+
+insert into cliente
+values	(11, 'ARBUSTO ROBUSTO', 117, 35000000.0),
+	(12, 'JARDÍN TRASERO', 117, 35000000.0);
 	
 -- Inserciones en la tabla direccionCliente
 insert into direccionCliente(direccion, fkIdCiudad, fkIdTipoDireccion, fkCodigoCliente)
