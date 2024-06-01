@@ -1046,3 +1046,355 @@ WHERE
 | JARDÍN MADRILEÑO               |         NULL |
 | INDUSTRIAL JARDINERA DE MADRID |         NULL |
 
+
+
+*4.* Devuelve un listado que muestre solamente los empleados que no tienen
+una oficina asociada.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.codigoEmpleado,
+	e.nombre AS nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) AS apellidosEmpleados
+FROM
+	empleado as e
+LEFT JOIN
+	oficina as ofc
+ON
+	e.fkCodigoOficina = ofc.codigoOficina
+WHERE
+	ofc.codigoOficina is NULL;
+~~~~
+
+### Resultado
+
+| codigoEmpleado | nombreEmpleado | apellidosEmpleados  |
+|:--------------:|:--------------:|:-------------------:|
+|            120 | José Mauricio  | Manosalva Buitrago  |
+|            121 | Karen Julieth  | Quintero Hernández  |
+
+
+*5.* Devuelve un listado que muestre solamente los empleados que no tienen un
+cliente asociado.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.codigoEmpleado,
+	e.nombre AS nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) AS apellidosEmpleados
+FROM
+	empleado as e
+LEFT JOIN
+	cliente as cl
+ON
+	e.codigoEmpleado = cl.fkCodigoEMpleadoRepVentas
+WHERE
+	cl.codigoCliente is NULL;	
+~~~~
+
+### Resultado
+| codigoEmpleado | nombreEmpleado  | apellidosEmpleados  |
+|:--------------:|:---------------:|:-------------------:|
+|             10 | Carlos Jhoan    | Aguilar Galvis      |
+|             21 | Luis Alfonso    | Gómez Mancilla      |
+|             32 | Javier Augusto  | Galvis Chacón       |
+|             43 | Julio César     | Galvis Chacón       |
+|             51 | Sandra Patricia | González Amador     |
+|             65 | Clara Milena    | Aguilar Bella       |
+|             71 | Juan David      | Gómez Benavides     |
+|            120 | José Mauricio   | Manosalva Buitrago  |
+|            121 | Karen Julieth   | Quintero Hernández  |
+
+
+
+*6.* Devuelve un listado que muestre solamente los empleados que no tienen un
+cliente asociado junto con los datos de la oficina donde trabajan.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.codigoEmpleado,
+	e.nombre AS nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) AS apellidosEmpleados,
+	ofc.codigoOficina,
+	ofc.nombre AS nombreOficina
+FROM
+	empleado as e
+LEFT JOIN
+	cliente as cl
+ON
+	e.codigoEmpleado = cl.fkCodigoEMpleadoRepVentas
+INNER JOIN
+	oficina as ofc
+ON
+	e.fkCodigoOficina = ofc.codigoOficina
+WHERE
+	cl.codigoCliente is NULL;
+~~~~
+
+
+### Resultado
+
+| codigoEmpleado | nombreEmpleado  | apellidosEmpleados | codigoOficina | nombreOficina             |
+|:--------------:|:---------------:|:------------------:|:-------------:|:-------------------------:|
+|             10 | Carlos Jhoan    | Aguilar Galvis     | OFCBUCCOL     | Oficina Bucaramanga       |
+|             21 | Luis Alfonso    | Gómez Mancilla     | OFCBUCCOL     | Oficina Bucaramanga       |
+|             32 | Javier Augusto  | Galvis Chacón      | OFCTOLMEX     | Oficina Toluca de Lerdo   |
+|             43 | Julio César     | Galvis Chacón      | OFCPACMEX     | Oficina Pachuca           |
+|             51 | Sandra Patricia | González Amador    | OFCCALCOL     | Oficina Cali              |
+|             65 | Clara Milena    | Aguilar Bella      | OFCBARESP     | Oficina Barcelona         |
+|             71 | Juan David      | Gómez Benavides    | OFCCDMXMEX    | Oficina Ciudad de México  |
+
+
+
+*7.* Devuelve un listado que muestre los empleados que no tienen una oficina
+asociada y los que no tienen un cliente asociado. 
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.codigoEmpleado,
+	e.nombre AS nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) AS apellidosEmpleados
+FROM
+	empleado as e
+LEFT JOIN
+	cliente as cl
+ON
+	e.codigoEmpleado = cl.fkCodigoEMpleadoRepVentas
+LEFT JOIN
+	oficina as ofc
+ON
+	e.fkCodigoOficina = ofc.codigoOficina
+WHERE
+	cl.codigoCliente is NULL OR
+	ofc.codigoOficina is NULL;
+~~~~
+
+
+### Resultado
+
+| codigoEmpleado | nombreEmpleado  | apellidosEmpleados  |
+|:--------------:|:---------------:|:-------------------:|
+|             10 | Carlos Jhoan    | Aguilar Galvis      |
+|             21 | Luis Alfonso    | Gómez Mancilla      |
+|             32 | Javier Augusto  | Galvis Chacón       |
+|             43 | Julio César     | Galvis Chacón       |
+|             51 | Sandra Patricia | González Amador     |
+|             65 | Clara Milena    | Aguilar Bella       |
+|             71 | Juan David      | Gómez Benavides     |
+|            120 | José Mauricio   | Manosalva Buitrago  |
+|            121 | Karen Julieth   | Quintero Hernández  |
+
+
+
+*8.* Devuelve un listado de los productos que nunca han aparecido en un
+pedido.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	pd.codigoProducto,
+	pd.nombre as nombreProducto
+FROM
+	producto as pd
+LEFT JOIN
+	detallePedido as dp
+ON
+	pd.codigoProducto = dp.fkCodigoProducto
+WHERE
+	dp.fkCodigoProducto is NULL;
+~~~~
+
+
+### Resultado
+
+| codigoProducto | nombreProducto    |
+|:--------------:|:-----------------:|
+| 11             | Semilla Curuba    |
+| 12             | Semilla Chirimoya |
+| 3              | Helecho C         |
+| 5              | Begonia B         |
+| 6              | Begonia C         |
+| 8              | Semilla Maracuyá  |
+
+
+*9.* Devuelve un listado de los productos que nunca han aparecido en un
+pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
+producto.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	pd.nombre as nombreProducto,
+	pd.descripcion,
+	pd.imagen
+FROM
+	producto as pd
+LEFT JOIN
+	detallePedido as dp
+ON
+	pd.codigoProducto = dp.fkCodigoProducto
+WHERE
+	dp.fkCodigoProducto is NULL;
+~~~~
+
+### Resultado
+
+| nombreProducto    | descripcion                         | imagen           |
+|:-----------------:|:-----------------------------------:|:----------------:|
+| Semilla Curuba    | Sembrarse en terreno seco           | ./semillcur.jpg  |
+| Semilla Chirimoya | Sembrarse en terreno seco o húmedo  | ./semillchir.jpg |
+| Helecho C         | Planta de exterior                  | ./helechoC.jpg   |
+| Begonia B         | Planta de exterior                  | ./begoniaB.jpg   |
+| Begonia C         | Planta de exterior                  | ./begoniaC.jpg   |
+| Semilla Maracuyá  | Sembrarse en terreno seco           | ./semillmar.jpg  |
+
+
+*10.* Devuelve las oficinas donde no trabajan ninguno de los empleados que
+hayan sido los representantes de ventas de algún cliente que haya realizado
+la compra de algún producto de la gama Frutales.
+
+
+### Consulta
+
+~~~~mysql
+SELECT
+	ofi.codigoOficina
+FROM
+	oficina as ofi
+WHERE
+	ofi.codigoOficina NOT IN(
+			SELECT	
+				ofc.codigoOficina
+			FROM
+				oficina as ofc
+			INNER JOIN
+				empleado as e
+			ON
+				e.fkCodigoOficina = ofc.codigoOficina
+			INNER JOIN
+				cliente as cl
+			ON
+				cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+			INNER JOIN
+				pedido as ped
+			ON
+				ped.fkCodigoCliente = cl.codigoCliente
+			INNER JOIN
+				detallePedido as dp
+			ON
+				dp.fkCodigoPedido = ped.codigoPedido
+			INNER JOIN
+				producto as pd
+			ON
+				pd.codigoProducto = dp.fkCodigoProducto
+			WHERE
+				pd.fkIdGama = 'FRUTALES'
+			GROUP BY 
+				ofc.codigoOficina);
+~~~~
+
+
+### Resultado
+
+| codigoOficina |
+|:-------------:|
+| OFCBARESP     |
+| OFCBUCCOL     |
+| OFCCALCOL     |
+| OFCCDMXMEX    |
+| OFCPACMEX     |
+| OFCSEVESP     |
+| OFCTOLMEX     |
+| OFCZARESP     |
+
+
+
+*11.* Devuelve un listado con los clientes que han realizado algún pedido pero no
+han realizado ningún pago.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	cl.codigoCliente,
+	cl.nombreCliente
+FROM
+	pedido as ped
+INNER JOIN
+	cliente as cl
+ON
+	cl.codigoCliente = ped.fkCodigoCliente
+LEFT JOIN
+	pago as p
+ON
+	p.fkCodigoCliente = cl.codigoCliente
+WHERE
+	p.idTransaccion is NULL;
+~~~~	
+
+
+### Resultado
+
+| codigoCliente | nombreCliente                  |
+|:-------------:|:------------------------------:|
+|             9 | JARDÍN MADRILEÑO               |
+|            10 | INDUSTRIAL JARDINERA DE MADRID |
+
+
+
+*12.* Devuelve un listado con los datos de los empleados que no tienen clientes
+asociados y el nombre de su jefe asociado.
+
+### Consulta
+
+~~~~mysql
+SELECT
+	e.codigoEmpleado as codEmpleado,
+	e.nombre as nombreEmpleado,
+	CONCAT(e.apellido1, ' ', e.apellido2) as apellidoEmpleado,
+	j.codigoEmpleado as codJefe,
+	j.nombre as nombreJefe,
+	CONCAT(j.apellido1, ' ', j.apellido2) as apellidoJefe
+FROM
+	cliente as cl
+RIGHT JOIN
+	empleado as e
+ON
+	cl.fkCodigoEMpleadoRepVentas = e.codigoEmpleado
+INNER JOIN
+	empleado as j
+ON
+	e.fkCodigoJefe = j.codigoEmpleado
+WHERE
+	cl.codigoCliente is NULL;
+~~~~
+
+
+### Resultado
+
+| codEmpleado | nombreEmpleado  | apellidoEmpleado    | codJefe | nombreJefe      | apellidoJefe       |
+|:-----------:|:---------------:|:-------------------:|:-------:|:---------------:|:------------------:|
+|          21 | Luis Alfonso    | Gómez Mancilla      |      10 | Carlos Jhoan    | Aguilar Galvis     |
+|          32 | Javier Augusto  | Galvis Chacón       |      21 | Luis Alfonso    | Gómez Mancilla     |
+|          43 | Julio César     | Galvis Chacón       |      32 | Javier Augusto  | Galvis Chacón      |
+|          51 | Sandra Patricia | González Amador     |      10 | Carlos Jhoan    | Aguilar Galvis     |
+|          65 | Clara Milena    | Aguilar Bella       |      51 | Sandra Patricia | González Amador    |
+|          71 | Juan David      | Gómez Benavides     |      10 | Carlos Jhoan    | Aguilar Galvis     |
+|         120 | José Mauricio   | Manosalva Buitrago  |      10 | Carlos Jhoan    | Aguilar Galvis     |
+|         121 | Karen Julieth   | Quintero Hernández  |     120 | José Mauricio   | Manosalva Buitrago |
+
+
