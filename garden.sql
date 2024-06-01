@@ -517,6 +517,61 @@ values	(7, 'Semilla Naranja', 'FRUTALES', NULL, 'Sembrarse en terreno seco'),
 	(13, 'Tijera De Poda Jardinería Mango Cubierto', 'HERRAMIENTAS', 'Largo 20cm', 'Herramientas manual para cortar arbustos'),
 	(14, 'Guadañadora Podadora Trabajo Pesado Gasolina', 'HERRAMIENTAS' , '150cm de largo', 'Podadora de combustible para usarse con árboles grandes o en cultivos de hoja pesada como el maíz');
 
+UPDATE producto
+SET imagen = './helechoA.jpg'
+WHERE codigoProducto = 1;
+
+UPDATE producto
+SET imagen = './semillmorcas.jpg'
+WHERE codigoProducto = 10;
+
+UPDATE producto
+SET imagen = './semillcur.jpg'
+WHERE codigoProducto = 11;
+
+UPDATE producto
+SET imagen = './semillchir.jpg'
+WHERE codigoProducto = 12;
+
+UPDATE producto
+SET imagen = './tijmangcub.jpg'
+WHERE codigoProducto = 13;
+
+UPDATE producto
+SET imagen = './guadpodpes.jpg'
+WHERE codigoProducto = 14;
+
+UPDATE producto
+SET imagen = './helechoB.jpg'
+WHERE codigoProducto = 2;
+
+UPDATE producto
+SET imagen = './helechoC.jpg'
+WHERE codigoProducto = 3;
+
+UPDATE producto
+SET imagen = './begoniaA.jpg'
+WHERE codigoProducto = 4;
+
+UPDATE producto
+SET imagen = './begoniaB.jpg'
+WHERE codigoProducto = 5;
+
+UPDATE producto
+SET imagen = './begoniaC.jpg'
+WHERE codigoProducto = 6;
+
+UPDATE producto
+SET imagen = './semillnar.jpg'
+WHERE codigoProducto = 7;
+
+UPDATE producto
+SET imagen = './semillmar.jpg'
+WHERE codigoProducto = 8;
+
+UPDATE producto
+SET imagen = './semillman.jpg'
+WHERE codigoProducto = 9;
 
 -- Inserciones en la tabla proveedor
 insert into proveedor(nombre, nit, fkIdCiudad, email)
