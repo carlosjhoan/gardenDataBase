@@ -376,6 +376,10 @@ values	(10, 'Carlos Jhoan', 'Aguilar', 'Galvis', '00', 'carlosjhoanaguilar@gmail
 	(107, 'María', 'Correa', 'Martínez', '09', 'martinezjulianamaria@gmail.com',  'OFCMEDCOL', 71, 8),
 	(117, 'Mario', 'Galvis', 'Olago', '10', 'galvismarioolago@gmail.com',  'OFCZARESP', 71, 8);
 
+insert into empleado
+values	(120, 'José Mauricio', 'Manosalva', 'Buitrago', '11', 'buitragomanosalva2023@gmail.com',  NULL, 10, 9),
+	(121, 'Karen Julieth', 'Quintero', 'Hernández', '12', 'karenquintero199403@gmail.com', NULL, 120, 10);
+
 -- Inserciones en la tabla cliente
 insert into cliente
 values	(001, 'EXPLOTACIONES AGRICOLAS VALJIMENO S.L.', 87, 150000000.0),
